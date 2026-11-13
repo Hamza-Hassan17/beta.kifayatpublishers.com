@@ -1,0 +1,274 @@
+@extends('dashboard.layouts.master')
+
+@section('title', __('Chapter Details'))
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard/student-audios.css') }}" />
+    <style>
+        .chapter-container {
+            display: flex;
+            gap: 20px;
+            height: 80vh;
+            margin-top: 20px;
+        }
+
+        /* Sidebar */
+        .chapter-sidebar {
+            width: 25%;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        .chapter-sidebar a {
+            display: block;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #60A5FA, #A855F7);
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .chapter-sidebar a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .chapter-sidebar a.active {
+            background: linear-gradient(90deg, #F59E0B, #EF4444);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Right Content Area */
+        .chapter-content {
+            width: 75%;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            /* Prevent overflow */
+        }
+
+        .chapter-content.worksheet-mode {
+            display: block !important;
+            justify-content: unset !important;
+            align-items: unset !important;
+            overflow: visible !important;
+            background: none;
+            border-radius: 10px;
+            box-shadow: none;
+            padding: 10px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            height: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            background: #000;
+        }
+
+        .worksheet-frame {
+            width: 100%;
+            height: 100%;
+            min-height: 70vh;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Scrollbar for sidebar */
+        .chapter-sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chapter-sidebar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .chapter-sidebar::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+
+        .chapter-sidebar::-webkit-scrollbar-thumb:hover {
+            background: #a1a1a1;
+        }
+
+        .chapter-content img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 992px) {
+            .chapter-container {
+                flex-direction: column;
+                /* Stack sidebar and content */
+                height: auto;
+            }
+
+            .chapter-sidebar {
+                width: 100%;
+                max-height: 250px;
+                /* Allow scrolling if too tall */
+                margin-bottom: 15px;
+            }
+
+            .chapter-content {
+                width: 100%;
+                height: auto;
+                padding: 15px;
+            }
+
+            .swf-container {
+                max-width: 100%;
+                height: 400px;
+                /* Mobile-friendly height */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .chapter-sidebar a {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+
+            .chapter-content {
+                padding: 10px;
+            }
+
+            .swf-container {
+                height: 300px;
+                /* Small phone height */
+            }
+        }
+    </style>
+@endsection
+
+@section('backbutton')
+    <a href="{{ route('student.animations') }}" class="btn btn-back">
+        <i class="fa-solid fa-arrow-left"></i> <span>BACK</span>
+    </a>
+@endsection
+
+@section('content')
+    <div class="chapter-container">
+        <!-- Sidebar -->
+        <div class="chapter-sidebar">
+            @if ($classChapter && $classChapter->chapterContents->count() > 0)
+                @foreach ($classChapter->chapterContents as $content)
+                    <a href="#" class="chapter-link" data-url="{{ asset($content->content_url) }}">
+                        {{ $content->title }}
+                    </a>
+                @endforeach
+            @endif
+
+            @if (!empty($classChapter->worksheet))
+                <a href="#" class="chapter-worksheet-link" data-url="{{ asset($classChapter->worksheet) }}">
+                    Student Worksheet
+                </a>
+            @endif
+
+            @if ((!$classChapter || $classChapter->chapterContents->count() == 0) && empty($classChapter->worksheet))
+                <p>No content found <i class="fa-solid fa-circle-exclamation"></i></p>
+            @endif
+        </div>
+
+        <!-- Content Area -->
+        <div class="chapter-content" id="chapterContentArea">
+            <p>Select a content from the left sidebar to view here.</p>
+        </div>
+    </div>
+@endsection
+
+@section('script')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('.chapter-link');
+            const worksheetLinks = document.querySelectorAll('.chapter-worksheet-link');
+            const contentArea = document.getElementById('chapterContentArea');
+
+            function loadVideo(url, linkElement) {
+                // Remove active classes
+                contentArea.classList.remove('worksheet-mode');
+                links.forEach(l => l.classList.remove('active'));
+                worksheetLinks.forEach(l => l.classList.remove('active'));
+                linkElement.classList.add('active');
+
+                contentArea.innerHTML = '';
+                const videoDiv = document.createElement('div');
+                videoDiv.classList.add('video-container');
+
+                const video = document.createElement('video');
+                video.src = url;
+                video.controls = true;
+                video.autoplay = true;
+                video.playsInline = true;
+
+                videoDiv.appendChild(video);
+                contentArea.appendChild(videoDiv);
+            }
+
+            function loadWorksheet(url, linkElement) {
+                // Remove active classes
+                contentArea.classList.add('worksheet-mode');
+                links.forEach(l => l.classList.remove('active'));
+                worksheetLinks.forEach(l => l.classList.remove('active'));
+                linkElement.classList.add('active');
+
+                contentArea.innerHTML = '';
+                const frame = document.createElement('iframe');
+                frame.src = url;
+                frame.classList.add('worksheet-frame');
+                frame.title = 'Student Worksheet';
+                contentArea.appendChild(frame);
+            }
+
+            // Video click handler
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const url = this.dataset.url;
+                    if (url) loadVideo(url, this);
+                });
+            });
+
+            // Worksheet click handler
+            worksheetLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const url = this.dataset.url;
+                    if (url) loadWorksheet(url, this);
+                });
+            });
+
+            // Auto-load first content (video or worksheet)
+            if (links.length > 0) {
+                loadVideo(links[0].dataset.url, links[0]);
+            } else if (worksheetLinks.length > 0) {
+                loadWorksheet(worksheetLinks[0].dataset.url, worksheetLinks[0]);
+            }
+        });
+    </script>
+@endsection

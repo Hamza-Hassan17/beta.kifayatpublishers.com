@@ -1,0 +1,223 @@
+.header-heading {
+    text-align: center;
+    padding: 10px;
+    background: linear-gradient(90deg, rgba(0, 108, 108, 0) 1.97%, #06B6D4 50.55%, rgba(0, 57, 57, 0) 97.29%);
+}
+
+.header-heading span {
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 45px;
+    letter-spacing: 0%;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.item-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-container .item-title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 36px;
+    text-align: center;
+    color: #06B6D4;
+}
+
+.video-card,
+.audio-card {
+    border: 1px solid #E5E7EB;
+    background-color: #fff;
+    border-radius: 10px;
+    height: 100%;
+}
+
+.video-thumb {
+    position: relative;
+    height: 150px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border-bottom: 1px solid #E5E7EB;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.video-thumb .img-fluid {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.play-icon {
+    position: absolute;
+    color: white;
+    font-size: 30px;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.video-thumb:hover .play-icon {
+    opacity: 1;
+}
+
+.video-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.video-content h6 {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0%;
+}
+
+.video-content .video-content-para {
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0%;
+}
+
+.video-content-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.video-content-btn small {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0%;
+}
+
+.video-content-btn button {
+    background: linear-gradient(97.26deg, #0369AF -15.25%, #06B6D4 133.09%);
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+    border: none;
+}
+
+.video-container {
+    width: 100%;
+    background: transparent;
+    border-radius: 20px;
+    overflow: hidden;
+    padding-bottom: 20px;
+}
+
+.video-container .header-nav {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: white;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 18px;
+    color: #009F9F;
+}
+
+.video-container .header-nav:hover {
+    background: #009F9F;
+    color: white;
+}
+
+.video-container .carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    padding: 10px 0;
+}
+
+.video-container .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.video-container .product-card {
+    flex: 0 0 calc(25% - 20px);
+    margin: 0 10px;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
+}
+/* 
+.video-container .product-card:hover {
+    transform: translateY(-10px);
+} */
+
+.video-container .carousel-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.video-container .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #cbd5e0;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.video-container .dot.active {
+    background: #009F9F;
+    transform: scale(1.2);
+}
+
+.video-container .slider-btn-left,
+.video-container .slider-btn-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.video-container .slider-btn-left {
+    left: 10px;
+}
+
+.video-container .slider-btn-right {
+    right: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .video-container .product-card {
+        flex: 0 0 calc(33.333% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .video-container .product-card {
+        flex: 0 0 calc(50% - 20px);
+    }
+
+    .video-container .header {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-container .product-card {
+        flex: 0 0 calc(100% - 20px);
+    }
+}

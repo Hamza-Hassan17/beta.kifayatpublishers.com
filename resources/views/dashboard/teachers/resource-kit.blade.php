@@ -1,0 +1,954 @@
+@extends('dashboard.layouts.master')
+
+@section('title', __('Teacher’s Resources Guide'))
+@section('description', '')
+@section('keywords', '')
+@section('author', '')
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard/resource-kit.css') }}" />
+@endsection
+
+@section('backbutton')
+    <a href="{{ route('teacher.portal') }}" class="btn btn-back">
+        <i class="fa-solid fa-arrow-left"></i> <span>BACK</span>
+    </a>
+@endsection
+
+@section('content')
+    <div class="header-heading">
+        <span>Teacher’s Resources Guide</span>
+    </div>
+    <div class="container item-container mt-5">
+        <!-- English Books -->
+        <div class="item-title">
+            <span>English/Phonics</span>
+        </div>
+        <div class="boxes mt-5">
+            <a href="{{ asset('assets/ebooks/english/MBS-Jr-Infant-Teaching-Guides') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/mbs-1.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">MBS Jr. Infant <br> Teaching Guide</span>
+                    <div class="vertical-bottom">
+                        <span class="badge english">English</span>
+                        <div class="mute-text">
+                            <span>PDF • 57 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/english/MBS-Sr-Infant-Teaching-Guides') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/mbs-2.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">MBS Sr. Infant <br> Teaching Guide</span>
+                    <div class="vertical-bottom">
+                        <span class="badge english">English</span>
+                        <div class="mute-text">
+                            <span>PDF • 94 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/english/My-book-of-Rhymes') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/mbs-3.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">My Book of Rhymes <br> Teaching Guide</span>
+                    <div class="vertical-bottom">
+                        <span class="badge english">English</span>
+                        <div class="mute-text">
+                            <span>PDF • 48 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Mathematics Books -->
+        <div class="item-title mt-5">
+            <span>Mathematics</span>
+        </div>
+        <div class="boxes mt-5">
+            <a href="{{ asset('assets/ebooks/math/Maths-Junior-Infant-Part-1-TG/index.html') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/math-jr-1.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Maths Jr. Infant <br> Part 1 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge mathematics">Mathematics</span>
+                        <div class="mute-text">
+                            <span>PDF • 98 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/math/Maths-Junior-Infant-Part-2-TG/index.html') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/math-jr-2.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Maths Jr. Infant <br> Part 2 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge mathematics">Mathematics</span>
+                        <div class="mute-text">
+                            <span>PDF • 88 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/math/Maths-Senior-Infant-Part-1-TG/index.html') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/math-sr-1.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Maths Sr. Infant <br> Part 1 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge mathematics">Mathematics</span>
+                        <div class="mute-text">
+                            <span>PDF • 77 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/math/Maths-Senior-Infant-Part-2-TG/index.html') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/math-sr-2.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Maths Sr. Infant <br> Part 2 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge mathematics">Mathematics</span>
+                        <div class="mute-text">
+                            <span>PDF • 91 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/math/Maths-Star-1') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/mathstar-grade-1.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Maths Stars 1 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge mathematics">Mathematics</span>
+                        <div class="mute-text">
+                            <span>PDF • 95 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/math/Maths-Star-2') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/mathstar-grade-2.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Maths Stars 2 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge mathematics">Mathematics</span>
+                        <div class="mute-text">
+                            <span>PDF • 65 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/math/Maths-Star-3') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/mathstar-grade-3.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Maths Stars 3 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge mathematics">Mathematics</span>
+                        <div class="mute-text">
+                            <span>PDF • 150 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/math/Maths-Star-4') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/mathstar-grade-4.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Maths Stars 4 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge mathematics">Mathematics</span>
+                        <div class="mute-text">
+                            <span>PDF • 159 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/math/Maths-Star-5') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/mathstar-grade-5.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Maths Stars 5 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge mathematics">Mathematics</span>
+                        <div class="mute-text">
+                            <span>PDF • 145 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/math/Maths-Star-6') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/mathstar-grade-6.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Maths Stars 6 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge mathematics">Mathematics</span>
+                        <div class="mute-text">
+                            <span>PDF • 73 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/math/Maths-Star-7') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/mathstar-grade-7.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Maths Stars 7 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge mathematics">Mathematics</span>
+                        <div class="mute-text">
+                            <span>PDF • 72 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/math/Maths-Star-8') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/mathstar-grade-8.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Maths Stars 8 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge mathematics">Mathematics</span>
+                        <div class="mute-text">
+                            <span>PDF • 49 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- General Knowledge Books -->
+        <div class="item-title mt-5">
+            <span>General Knowledge</span>
+        </div>
+        <div class="boxes mt-5">
+            <a href="{{ asset('assets/ebooks/gk/Small-World-Junior-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/small-world-jr.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Small World <br> Junior TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge science">GK</span>
+                        <div class="mute-text">
+                            <span>PDF • 71 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/gk/Small-World-Senior-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/small-world-sr.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Small World <br> Senior TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge science">GK</span>
+                        <div class="mute-text">
+                            <span>PDF • 147 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/gk/Small-World-Class-1') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/small-world-class-1.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Small World <br> Class 1</span>
+                    <div class="vertical-bottom">
+                        <span class="badge science">GK</span>
+                        <div class="mute-text">
+                            <span>PDF • 147 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/gk/Small-World-Class-2') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/small-world-class-2.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Small World <br> Class 2</span>
+                    <div class="vertical-bottom">
+                        <span class="badge science">GK</span>
+                        <div class="mute-text">
+                            <span>PDF • 188 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/gk/Small-World-Class-3') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/small-world-class-3.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Small World <br> Class 3</span>
+                    <div class="vertical-bottom">
+                        <span class="badge science">GK</span>
+                        <div class="mute-text">
+                            <span>PDF • 214 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/gk/Small-World-SNC-Class-1') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/small-world-snc-class-1.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Small World SNC <br> Class 1</span>
+                    <div class="vertical-bottom">
+                        <span class="badge science">GK</span>
+                        <div class="mute-text">
+                            <span>PDF • 55 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/gk/Small-World-SNC-Class-2') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/small-world-snc-class-2.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Small World SNC <br> Class 2</span>
+                    <div class="vertical-bottom">
+                        <span class="badge science">GK</span>
+                        <div class="mute-text">
+                            <span>PDF • 45 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/gk/Small-World-SNC-Class-3') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/small-world-snc-class-3.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Small World SNC <br> Class 3</span>
+                    <div class="vertical-bottom">
+                        <span class="badge science">GK</span>
+                        <div class="mute-text">
+                            <span>PDF • 40 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Social Studies Books -->
+        <div class="item-title mt-5">
+            <span>Social Studies</span>
+        </div>
+        <div class="boxes mt-5">
+            <a href="{{ asset('assets/ebooks/gk/Small-World-SNC-Class-4') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/small-world-snc-class-4.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Small World SNC <br> Class 4</span>
+                    <div class="vertical-bottom">
+                        <span class="badge science">SST</span>
+                        <div class="mute-text">
+                            <span>PDF • 78 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/gk/Small-World-SNC-Class-5') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/small-world-snc-class-5.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Small World SNC <br> Class 5</span>
+                    <div class="vertical-bottom">
+                        <span class="badge science">SST</span>
+                        <div class="mute-text">
+                            <span>PDF • 68 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Urdu Books -->
+        <div class="item-title mt-5">
+            <span>Urdu</span>
+        </div>
+        <div class="boxes mt-5">
+            <a href="{{ asset('assets/ebooks/urdu/Samar-e-Urdu-Shahtoot') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/samar-e-urdu-shahtoot-playgroup.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Samar e Urdu Shahtoot <br> PlayGroup TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 48 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/urdu/Samar-e-Urdu-Kaila') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/samar-e-urdu-kaila-nursery.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Samar e Urdu Kaila <br> Nursery TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 65 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/urdu/Samar-e-Urdu-Aaroo') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/samar-e-urdu-aroo-kg-1.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Samar e Urdu Aaroo <br> KG-I TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 57 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/urdu/Samar-e-Urdu-Amrood') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/samar-e-urdu-amrood-kg-2.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Samar e Urdu Amrood <br> KG-II TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 43 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/urdu/Urdu-Class-1-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/samar-e-urdu-aam-class-1.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Samar e Urdu <br> Aam Class 1 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 80 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/urdu/Urdu-Class-2-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/samar-e-urdu-anar-class-2.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Samar e Urdu <br> Aanar Class 2 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 80 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/urdu/Urdu-Class-3-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/samar-e-urdu-angoor-class-3.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Samar e Urdu <br> Angoor Class 3 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 109 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/urdu/Urdu-Class-4-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/samar-e-urdu-saib-class-4.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Samar e Urdu <br> Saib Class 4 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 108 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/urdu/Urdu-Class-5-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/samar-e-urdu-santra-class-5.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Samar e Urdu <br> Santra Class 5 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 112 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/urdu/Urdu-Class-6-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/samar-e-urdu-neem-class-6.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Samar e Urdu <br> Neem Class 6 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 126 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/urdu/Urdu-Class-7-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/samar-e-urdu-snobar-class-7.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Samar e Urdu <br> Sanober Class 7 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 109 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/urdu/Urdu-Class-8-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/samar-e-urdu-amaltas-class-8.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Samar e Urdu <br> Amaltas Class 8 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 103 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Urdu Dhanak Series Books -->
+        <div class="item-title mt-5">
+            <span>Urdu Dhanak Series</span>
+        </div>
+        <div class="boxes mt-5">
+            <a href="{{ asset('assets/ebooks/urdu-dhanak/Dhanak-Laal-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/dhanak-urdu-laal-1.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Dhanak Urdu laal <br> Class 1</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 79 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/urdu-dhanak/Dhanak-Neela') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/dhanak-urdu-neela-2.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Dhanak Urdu Neela <br> Class 2</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 112 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/urdu-dhanak/Dhanak-Peela') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/dhanak-urdu-peela-3.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Dhanak Urdu Peela <br> Class 3</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 102 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/urdu-dhanak/Dhanak-Hara') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/dhanak-urdu-hara-4.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Dhanak Urdu Hara <br> Class 4</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 116 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/urdu-dhanak/Dhanak-Narangi') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/dhanak-urdu-narangi-5.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Dhanak Urdu Naranji <br> Class 5</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 114 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/urdu-dhanak/Dhanak-Urdu-Jamni') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/dhanak-urdu-jamni-6.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Dhanak Urdu Jamni <br> Class 6 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 94 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/urdu-dhanak/Dhanak-Urdu-Unabi-Class-7') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/dhanak-urdu-unabi-7.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Dhanak Urdu Unabi <br> Class 7 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 119 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/urdu-dhanak/Dhanak-Urdu-Safaid-Class-8') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/dhanak-urdu-safaid-8.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Dhanak Urdu Safaid <br> Class 8 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 108 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Dhanak Series Special Edition Books -->
+        <div class="item-title mt-5">
+            <span>Dhanak Series Special Edition</span>
+        </div>
+        <div class="boxes mt-5">
+            <a href="{{ asset('assets/ebooks/urdu-dhanak-special/Dhanak-Urdu-Jamni-6') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/dhanak-special-urdu-jamni-6.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Dhanak Urdu Jamni <br> Class 6 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 90 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/urdu-dhanak-special/Dhanak-Urdu-Unabi-Class-7') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/dhanak-special-urdu-unabi-7.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Dhanak Urdu Unabi <br> Class 7 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 137 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/urdu-dhanak-special/Dhanak-Urdu-Safaid-Class-8') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/dhanak-special-urdu-safaid-8.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Dhanak Urdu Safaid <br> Class 8 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge urdu">Urdu</span>
+                        <div class="mute-text">
+                            <span>PDF • 114 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Islamiat (Mera Pyara Deen Islam) Books -->
+        <div class="item-title mt-5">
+            <span>Islamiat (Mera Pyara Deen Islam)</span>
+        </div>
+        <div class="boxes mt-5">
+            <a href="{{ asset('assets/ebooks/islamiyat/Islamiat-Class-3-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/mera-piyara-deen-e-islam-class-3.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Mera Pyara Deen Islam <br> Class 3</span>
+                    <div class="vertical-bottom">
+                        <span class="badge islamiat">Islamiat</span>
+                        <div class="mute-text">
+                            <span>PDF • 59 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/islamiyat/Islamiat-Class-4-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/mera-piyara-deen-e-islam-class-4.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Mera Pyara Deen Islam <br> Class 4</span>
+                    <div class="vertical-bottom">
+                        <span class="badge islamiat">Islamiat</span>
+                        <div class="mute-text">
+                            <span>PDF • 73 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/islamiyat/Islamiat-Class-5-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/mera-piyara-deen-e-islam-class-5.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Mera Pyara Deen Islam <br> Class 5</span>
+                    <div class="vertical-bottom">
+                        <span class="badge islamiat">Islamiat</span>
+                        <div class="mute-text">
+                            <span>PDF • 67 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/islamiyat/Islamiat-Class-6-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/mera-piyara-deen-e-islam-class-6.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Mera Pyara Deen Islam <br> Class 6</span>
+                    <div class="vertical-bottom">
+                        <span class="badge islamiat">Islamiat</span>
+                        <div class="mute-text">
+                            <span>PDF • 63 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/islamiyat/Islamiat-Class-7-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/mera-piyara-deen-e-islam-class-7.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Mera Pyara Deen Islam <br> Class 7</span>
+                    <div class="vertical-bottom">
+                        <span class="badge islamiat">Islamiat</span>
+                        <div class="mute-text">
+                            <span>PDF • 64 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/islamiyat/Islamiat-Class-8-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/mera-piyara-deen-e-islam-class-8.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Mera Pyara Deen Islam <br> Class 8</span>
+                    <div class="vertical-bottom">
+                        <span class="badge islamiat">Islamiat</span>
+                        <div class="mute-text">
+                            <span>PDF • 65 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Islamiat (Lazmi) Books -->
+        <div class="item-title mt-5">
+            <span>Islamiat (Lazmi)</span>
+        </div>
+        <div class="boxes mt-5">
+            <a href="{{ asset('assets/ebooks/islamiyat/Islamiat-Lazmi-Class-3-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/islamiat-lazmi-class-3.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Islamiat Lazmi <br> Class 3 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge islamiat">Islamiat</span>
+                        <div class="mute-text">
+                            <span>PDF • 72 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/islamiyat/Islamiat-Lazmi-Class-4-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/islamiat-lazmi-class-4.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Islamiat Lazmi <br> Class 4 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge islamiat">Islamiat</span>
+                        <div class="mute-text">
+                            <span>PDF • 86 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/islamiyat/Islamiat-Lazmi-Class-5-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/islamiat-lazmi-class-5.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Islamiat Lazmi <br> Class 5 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge islamiat">Islamiat</span>
+                        <div class="mute-text">
+                            <span>PDF • 84 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/islamiyat/Islamiat-Lazmi-Class-6-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/islamiat-lazmi-class-6.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Islamiat Lazmi <br> Class 6 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge islamiat">Islamiat</span>
+                        <div class="mute-text">
+                            <span>PDF • 93 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/islamiyat/Islamiat-Lazmi-Class-7-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/islamiat-lazmi-class-7.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Islamiat Lazmi <br> Class 7 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge islamiat">Islamiat</span>
+                        <div class="mute-text">
+                            <span>PDF • 103 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ asset('assets/ebooks/islamiyat/Islamiat-Lazmi-Class-8-TG') }}" target="_blank" class="items-box">
+                <img height="80px" src="{{ asset('assets/images/books/islamiat-lazmi-class-8.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Islamiat Lazmi <br> Class 8 TG</span>
+                    <div class="vertical-bottom">
+                        <span class="badge islamiat">Islamiat</span>
+                        <div class="mute-text">
+                            <span>PDF • 85 pages</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Computer (Digital Discovery) Section -->
+        <div class="item-title mt-5">
+            <span>Computer (Digital Discovery)</span>
+        </div>
+        <div class="boxes mt-5">
+
+            {{-- Grade 1 --}}
+            <div class="items-box computer-main-card" data-bs-toggle="modal" data-bs-target="#ddModal1">
+                <img height="80px" src="{{ asset('assets/images/books/computer/Grade-1.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Digital Discovery <br> Grade 1 Resources</span>
+                    <div class="vertical-bottom">
+                        <span class="badge computer">Computer</span>
+                        <div class="mute-text"><span>Grade 1</span></div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Grade 2 --}}
+            <div class="items-box computer-main-card" data-bs-toggle="modal" data-bs-target="#ddModal2">
+                <img height="80px" src="{{ asset('assets/images/books/computer/Grade-2.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Digital Discovery <br> Grade 2 Resources</span>
+                    <div class="vertical-bottom">
+                        <span class="badge computer">Computer</span>
+                        <div class="mute-text"><span>Grade 2</span></div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Grade 3 --}}
+            <div class="items-box computer-main-card" data-bs-toggle="modal" data-bs-target="#ddModal3">
+                <img height="80px" src="{{ asset('assets/images/books/computer/Grade-3.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Digital Discovery <br> Grade 3 Resources</span>
+                    <div class="vertical-bottom">
+                        <span class="badge computer">Computer</span>
+                        <div class="mute-text"><span>Grade 3</span></div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Grade 4 --}}
+            <div class="items-box computer-main-card" data-bs-toggle="modal" data-bs-target="#ddModal4">
+                <img height="80px" src="{{ asset('assets/images/books/computer/Grade-4.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Digital Discovery <br> Grade 4 Resources</span>
+                    <div class="vertical-bottom">
+                        <span class="badge computer">Computer</span>
+                        <div class="mute-text"><span>Grade 4</span></div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Grade 5 --}}
+            <div class="items-box computer-main-card" data-bs-toggle="modal" data-bs-target="#ddModal5">
+                <img height="80px" src="{{ asset('assets/images/books/computer/Grade-5.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Digital Discovery <br> Grade 5 Resources</span>
+                    <div class="vertical-bottom">
+                        <span class="badge computer">Computer</span>
+                        <div class="mute-text"><span>Grade 5</span></div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Grade 6 --}}
+            <div class="items-box computer-main-card" data-bs-toggle="modal" data-bs-target="#ddModal6">
+                <img height="80px" src="{{ asset('assets/images/books/computer/Grade-6.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Digital Discovery <br> Grade 6 Resources</span>
+                    <div class="vertical-bottom">
+                        <span class="badge computer">Computer</span>
+                        <div class="mute-text"><span>Grade 6</span></div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Grade 7 --}}
+            <div class="items-box computer-main-card" data-bs-toggle="modal" data-bs-target="#ddModal7">
+                <img height="80px" src="{{ asset('assets/images/books/computer/Grade-7.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Digital Discovery <br> Grade 7 Resources</span>
+                    <div class="vertical-bottom">
+                        <span class="badge computer">Computer</span>
+                        <div class="mute-text"><span>Grade 7</span></div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Grade 8 --}}
+            <div class="items-box computer-main-card" data-bs-toggle="modal" data-bs-target="#ddModal8">
+                <img height="80px" src="{{ asset('assets/images/books/computer/Grade-8.jpg') }}" alt="book">
+                <div class="box-title">
+                    <span class="title">Digital Discovery <br> Grade 8 Resources</span>
+                    <div class="vertical-bottom">
+                        <span class="badge computer">Computer</span>
+                        <div class="mute-text"><span>Grade 8</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>{{-- end item-container --}}
+
+    {{-- ── Digital Discovery Modals (Grade 1–8) ── --}}
+    @foreach ([1,2,3,4,5,6,7,8] as $g)
+    <div class="modal fade" id="ddModal{{ $g }}" tabindex="-1" aria-label="Digital Discovery Grade {{ $g }} Resources" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-3">
+                <div class="modal-header border-0 pb-1">
+                    <h5 class="modal-title fw-semibold">Digital Discovery Grade {{ $g }} Resources</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="boxes justify-content-center">
+                        {{-- Lesson Plan card --}}
+                        <a href="{{ asset('assets/ebooks/computer/lesson/Grade-' . $g . '/index.html') }}" target="_blank" class="items-box">
+                            <img height="80px" src="{{ asset('assets/ebooks/computer/lesson/Grade-' . $g . '/shot.png') }}" alt="book">
+                            <div class="box-title">
+                                <span class="title">Lesson Plan</span>
+                                <div class="vertical-bottom">
+                                    <span class="badge computer">Computer</span>
+                                    <div class="mute-text"><span>Grade {{ $g }}</span></div>
+                                </div>
+                            </div>
+                        </a>
+                        {{-- Teacher's Worksheet card --}}
+                        <a href="{{ asset('assets/ebooks/computer/worksheets/Grade-' . $g . '/index.html') }}" target="_blank" class="items-box">
+                            <img height="80px" src="{{ asset('assets/ebooks/computer/worksheets/Grade-' . $g . '/shot.png') }}" alt="book">
+                            <div class="box-title">
+                                <span class="title">Teacher's Worksheet</span>
+                                <div class="vertical-bottom">
+                                    <span class="badge computer">Computer</span>
+                                    <div class="mute-text"><span>Grade {{ $g }}</span></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+
+@endsection
+
+@section('script')
+@endsection
