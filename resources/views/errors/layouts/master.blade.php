@@ -11,7 +11,7 @@
 
 <body>
     <div class="error-container">
-        <img src="{{ asset('assets/images/logos/kifayat.png') }}" alt="Kifayat Logo" class="logo">
+        <img src="{{ asset('assets/images/logos/kinet.png') }}" alt="Kifayat Logo" class="logo">
         @yield('content')
     </div>
 

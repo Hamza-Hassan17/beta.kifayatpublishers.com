@@ -10,12 +10,7 @@
 </head>
 
 <body>
-    <div class="gradient-background d-flex justify-content-center align-items-center vh-100">
-
-        <div class="position-absolute top-0 start-0 m-3">
-            <a href="{{ route('choose-portal') }}" class="btn btn-back"><i class="fa-solid fa-arrow-left"></i> <span>BACK</span></a>
-        </div>
-
+    <div class="gradient-background d-flex justify-content-center align-items-center vh-100 @yield('auth-page-class')">
         @yield('content')
     </div>
 

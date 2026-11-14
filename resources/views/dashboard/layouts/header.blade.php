@@ -1,6 +1,6 @@
 <div class="top-bar">
     <a href="{{ route('choose-portal') }}">
-        <img src="{{ asset('assets/images/logos/kifayat.png') }}" alt="Logo" height="50">
+        <img src="{{ asset('assets/images/logos/kinet.png') }}" alt="Kinet" height="35">
     </a>
     {{-- <img src="{{ asset('assets/images/account/profile.png') }}" alt="User" class="avatar"> --}}
 

@@ -9,13 +9,8 @@
     @yield('css')
 </head>
 
-<body>
+<body class="@yield('page-class')">
     @include('dashboard.layouts.header')
-
-    <!-- Back button -->
-    <div class="m-3 mb-5">
-        @yield('backbutton')
-    </div>
 
     @yield('content')
 

@@ -65,12 +65,12 @@
 }
 
 .resource-box-cards .card .fa-calculator {
-    color: #2563EB;
+    color: #ff6b5a;
     font-size: 40px;
 }
 
 .resource-box-cards .card .fa-book-open {
-    color: #9333EA;
+    color: #ff6b5a;
     font-size: 40px;
 }
 
@@ -92,8 +92,34 @@
 }
 
 .resource-box-cards .card a {
-    color: #009F9F;
+    color: #ff6b5a;
     text-align: center;
     font-size: 16px;
     font-weight: 500;
+}
+
+.dashboard-header h4 {
+    color: #1f2937;
+}
+
+.teacher-page .btn-back {
+    border-color: #ff6b5a;
+    color: #ff6b5a;
+}
+
+.teacher-page .btn-back:hover {
+    background-color: #ff6b5a;
+    color: #fff !important;
+}
+
+.resource-box-cards .card {
+    border-style: solid;
+    border-color: #e5e7eb;
+    box-shadow: 0 8px 20px #1f293714;
+    transition: box-shadow 150ms ease, transform 150ms ease;
+}
+
+.resource-box-cards .card:hover {
+    box-shadow: 0 12px 24px #1f29371a;
+    transform: translateY(-3px) scale(1.01);
 }

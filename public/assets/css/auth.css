@@ -98,3 +98,60 @@ a {
 .font-14 {
     font-size: 14px;
 }
+
+.teacher-auth-page {
+    background: #fff;
+}
+
+.teacher-login-card {
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 16px 36px #1f293714;
+}
+
+.teacher-login-logo {
+    display: block;
+    height: 42px;
+    margin: 0 auto 1.5rem;
+    object-fit: contain;
+    width: auto;
+}
+
+.teacher-login-card .teacher-icon {
+    background-color: #ff6b5a;
+}
+
+.teacher-auth-page .btn-back {
+    border-color: #ff6b5a;
+    color: #ff6b5a;
+}
+
+.teacher-auth-page .btn-back:hover {
+    background-color: #ff6b5a;
+    color: #fff !important;
+}
+
+.teacher-login-card .form-control:focus {
+    border-color: #ff6b5a;
+}
+
+.teacher-login-button {
+    background-color: #ff6b5a;
+    border-color: #ff6b5a;
+    color: #fff;
+}
+
+.teacher-login-button:hover,
+.teacher-login-button:focus {
+    background-color: #e85a4b;
+    border-color: #e85a4b;
+    color: #fff;
+}
+
+.teacher-login-link,
+.teacher-login-card a {
+    color: #ff6b5a;
+}
+
+.teacher-login-card a:hover {
+    color: #e85a4b;
+}

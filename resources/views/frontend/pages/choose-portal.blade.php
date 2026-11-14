@@ -21,7 +21,7 @@
                     </span>
                 </div>
                 <div class="choose-portal-cards">
-                    <a href="{{ route('student.login') }}">
+                    <a href="{{ route('student.login') }}" @class(['selected-portal' => ($selectedRole ?? null) === 'student'])>
                         <div class="card">
                             <div class="text-center mb-3">
                                 <div class="icon-circle mb-2 student-icon">
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="{{ route('teacher.login') }}">
+                    <a href="{{ route('teacher.login') }}" @class(['selected-portal' => ($selectedRole ?? null) === 'teacher'])>
                         <div class="card">
                             <div class="text-center mb-3">
                                 <div class="icon-circle teacher-icon mb-2">

@@ -1,47 +1,81 @@
 body {
-    background: linear-gradient(to right, #EFF6FF, #E0E7FF);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     min-height: 100vh;
+    margin: 0;
+    padding: 1.5rem;
+    background: #f9fafb;
+    color: #1f2937;
     font-family: 'Poppins', sans-serif;
 }
 
 .error-container {
+    width: min(100%, 560px);
+    padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 6vw, 3.5rem);
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem;
+    background: #fff;
+    box-shadow: 0 16px 36px #1f293714;
     text-align: center;
-    padding: 40px;
-    /* background: #fff; */
-    border-radius: 16px;
-    /* box-shadow: 0 0 30px rgba(0, 0, 0, 0.05); */
-    max-width: 550px;
-    width: 100%;
-}
-
-.error-code {
-    font-size: 100px;
-    font-weight: bold;
-    color: #0d6efd;
-}
-
-.error-message {
-    font-size: 24px;
-    font-weight: 500;
-    margin-bottom: 20px;
-    color: #343a40;
-}
-
-.error-description {
-    font-size: 16px;
-    color: #6c757d;
-    margin-bottom: 30px;
-}
-
-.btn-home {
-    padding: 10px 24px;
-    border-radius: 8px;
 }
 
 .logo {
+    display: block;
+    width: auto;
     max-width: 150px;
-    margin-bottom: 20px;
+    height: auto;
+    margin: 0 auto 1.5rem;
+}
+
+.error-code {
+    margin-bottom: 0.5rem;
+    color: #ff6b5a;
+    font-size: clamp(5rem, 16vw, 7rem);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.error-message {
+    margin-bottom: 0.75rem;
+    color: #1f2937;
+    font-size: clamp(1.35rem, 4vw, 1.75rem);
+    font-weight: 700;
+}
+
+.error-description {
+    max-width: 420px;
+    margin: 0 auto 2rem;
+    color: #4b5563;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.btn-home {
+    display: inline-block;
+    border: 1px solid #ff6b5a;
+    border-radius: 50px;
+    padding: 0.75rem 2rem;
+    background: #ff6b5a;
+    color: #fff;
+    font-weight: 600;
+    transition: background-color 150ms ease, border-color 150ms ease,
+        box-shadow 150ms ease, transform 150ms ease;
+}
+
+.btn-home:hover,
+.btn-home:focus {
+    border-color: #e85c4c;
+    background: #e85c4c;
+    color: #fff;
+}
+
+.btn-home:focus-visible {
+    outline: 3px solid #ff6b5a66;
+    outline-offset: 3px;
+}
+
+.btn-home:hover {
+    box-shadow: 0 8px 18px #ff6b5a33;
+    transform: translateY(-2px);
 }
