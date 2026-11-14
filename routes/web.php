@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\ProfileController;
 use App\Http\Controllers\Dashboard\StudentController;
 use App\Http\Controllers\Dashboard\TeacherController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,8 +20,28 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Auth::routes();
-Route::get('/', function () {
-    return view('frontend.pages.choose-portal');
+Route::get('/', function (Request $request) {
+    if (Auth::check()) {
+        return view('frontend.pages.choose-portal', ['selectedRole' => session('selected_role')]);
+    }
+
+    $role = strtolower((string) $request->query('role'));
+    if (in_array($role, ['student', 'teacher'], true)) {
+        session([
+            'welcome_seen' => true,
+            'selected_role' => $role,
+        ]);
+
+        return view('frontend.pages.choose-portal', ['selectedRole' => $role]);
+    }
+
+    if (session('welcome_seen')) {
+        return view('frontend.pages.choose-portal', ['selectedRole' => session('selected_role')]);
+    }
+
+    session(['welcome_seen' => true]);
+
+    return view('frontend.pages.welcome');
 })->name('choose-portal');
 // Guest Routes hh
 
@@ -41,18 +62,21 @@ Route::get('/', function () {
         Route::get('/', [StudentController::class, 'studentPortal'])->name('portal');
         Route::get('/videos', [StudentController::class, 'studentVideos'])->name('videos');
         Route::get('/audios', [StudentController::class, 'studentAudios'])->name('audios');
+        Route::get('/audios/{grade}', [StudentController::class, 'studentAudios'])->whereNumber('grade')->name('audios.grade');
         Route::get('/animations', [StudentController::class, 'studentAnimations'])->name('animations');
-        Route::get('/animations/{class}/{chapter}', [StudentController::class, 'chapterDetails'])->name('animations.chapter');
         Route::get('/animations/preview', [StudentController::class, 'preview'])->name('animation.preview');
+        Route::get('/animations/{class}', [StudentController::class, 'studentAnimations'])->name('animations.class');
+        Route::get('/animations/{class}/{chapter}', [StudentController::class, 'chapterDetails'])->name('animations.chapter');
         Route::get('/uraan-urdu-series', [StudentController::class, 'uraanUrduSeries'])->name('uraan-urdu-series');
-        Route::get('/uraan-urdu-series/{class}/{chapter}', [StudentController::class, 'urduChapterDetails'])->name('uraan-urdu-series.chapter');
-        Route::get('/uraan-urdu-preview', [StudentController::class, 'urduPreview'])->name('uraan-urdu.preview');
         Route::get('/uraan-urdu-series-resources', function () {
             return view('dashboard.students.urdu-resources');
         })->name('urdu-resources');
         Route::get('/uraan-urdu-series-nocs', function () {
             return view('dashboard.students.uraan-urdu-noc');
         })->name('urdu-nocs');
+        Route::get('/uraan-urdu-series/{class}', [StudentController::class, 'uraanUrduSeries'])->name('uraan-urdu-series.class');
+        Route::get('/uraan-urdu-series/{class}/{chapter}', [StudentController::class, 'urduChapterDetails'])->name('uraan-urdu-series.chapter');
+        Route::get('/uraan-urdu-preview', [StudentController::class, 'urduPreview'])->name('uraan-urdu.preview');
 
     });
 
@@ -68,7 +92,7 @@ Route::group(['middleware' => ['auth']], function () {
     //Teacher Portal Routes
      Route::prefix('teacher')->name('teacher.')->group(function () {
         Route::get('/', [TeacherController::class, 'teacherPortal'])->name('portal');
-        Route::get('/answer-kit', [TeacherController::class, 'teacherAnswerKit'])->name('answer-kit');
-        Route::get('/resource-kit', [TeacherController::class, 'teacherResourceKit'])->name('resource-kit');
+        Route::get('/answer-kit/{subject?}/{class?}', [TeacherController::class, 'teacherAnswerKit'])->name('answer-kit');
+        Route::get('/resource-kit/{subject?}/{class?}', [TeacherController::class, 'teacherResourceKit'])->name('resource-kit');
     });
 });

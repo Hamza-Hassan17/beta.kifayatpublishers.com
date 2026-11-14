@@ -1,9 +1,72 @@
 .dashboard-header {
-    background: linear-gradient(90deg, #0369AF 0%, #06B6D4 100%);
-    color: white;
+    background: #fff;
+    color: #1F2937;
+    border: 2px solid #ff6b5a;
     border-radius: 15px;
     padding: 2rem;
     margin-bottom: 2rem;
+    box-shadow: 0 12px 30px #ff6b5a1f;
+}
+
+.dashboard-header h4 {
+    color: #ff6b5a;
+    font-weight: 700;
+}
+
+.dashboard-header p {
+    color: #4B5563;
+    margin-bottom: 0;
+}
+
+.student-resource-grid {
+    row-gap: 1.5rem;
+}
+
+.student-resource-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid #E5E7EB;
+    border-radius: 15px;
+    color: #1F2937;
+    box-shadow: 0 8px 20px #1F293714;
+    transition: box-shadow 150ms ease, transform 150ms ease;
+}
+
+.student-resource-card:hover {
+    box-shadow: 0 12px 24px #1F29371A;
+    color: #1F2937;
+    transform: translateY(-3px) scale(1.01);
+}
+
+.student-resource-card .icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: #ff6b5a;
+    color: #fff;
+    font-size: 18px;
+}
+
+.student-resource-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.student-resource-text strong {
+    font-size: 16px;
+}
+
+.student-resource-text small {
+    color: #4B5563;
+    font-size: 14px;
 }
 
 .info-box-container {
@@ -52,10 +115,12 @@
     border-radius: 12px;
     border-width: 1px;
     cursor: pointer;
+    transition: box-shadow 150ms ease, transform 150ms ease;
 }
 
 .quick-access .card:hover {
-    background-color: #f1f1f1;
+    box-shadow: 0 12px 24px #1F29371A;
+    transform: translateY(-3px) scale(1.01);
 }
 
 .quick-access-box {

@@ -1,16 +1,31 @@
+body {
+    background: #fff;
+}
+
+.btn-back {
+    border-color: #ff6b5a;
+    color: #ff6b5a;
+}
+
+.btn-back:hover {
+    background-color: #ff6b5a;
+    color: #fff !important;
+}
+
 .header-heading {
     text-align: center;
     padding: 10px;
-    background: linear-gradient(90deg, rgba(0, 108, 108, 0) 1.97%, #06B6D4 50.55%, rgba(0, 57, 57, 0) 97.29%);
+    background: #fff;
+    border-bottom: 2px solid #ff6b5a;
 }
 
 .header-heading span {
     font-weight: 600;
     font-size: 25px;
-    line-height: 45px;
+    line-height: 1.4;
     letter-spacing: 0%;
     text-transform: uppercase;
-    color: #fff;
+    color: #ff6b5a;
 }
 
 .item-container {
@@ -25,7 +40,7 @@
     font-size: 20px;
     line-height: 36px;
     text-align: center;
-    color: #06B6D4;
+    color: #ff6b5a;
 }
 
 .video-card,
@@ -34,6 +49,7 @@
     background-color: #fff;
     border-radius: 10px;
     height: 100%;
+    box-shadow: 0 8px 20px #1F293714;
 }
 
 .video-thumb {
@@ -99,11 +115,19 @@
 }
 
 .video-content-btn button {
-    background: linear-gradient(97.26deg, #0369AF -15.25%, #06B6D4 133.09%);
+    background: #ff6b5a;
+    color: #fff;
     font-weight: 600;
     font-size: 12px;
     text-align: center;
-    border: none;
+    border: 1px solid #ff6b5a;
+}
+
+.video-content-btn button:hover,
+.video-content-btn button:focus {
+    background: #fff !important;
+    border-color: #ff6b5a;
+    color: #ff6b5a !important;
 }
 
 .video-container {
@@ -127,11 +151,11 @@
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 18px;
-    color: #009F9F;
+    color: #ff6b5a;
 }
 
 .video-container .header-nav:hover {
-    background: #009F9F;
+    background: #ff6b5a;
     color: white;
 }
 
@@ -177,7 +201,7 @@
 }
 
 .video-container .dot.active {
-    background: #009F9F;
+    background: #ff6b5a;
     transform: scale(1.2);
 }
 

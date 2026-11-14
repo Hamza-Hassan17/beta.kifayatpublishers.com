@@ -10,16 +10,18 @@
 @endsection
 
 @section('backbutton')
-    <a href="{{ route('student.portal') }}" class="btn btn-back">
+    <a href="{{ route('student.uraan-urdu-series') }}" class="btn btn-back">
         <i class="fa-solid fa-arrow-left"></i> <span>BACK</span>
     </a>
 @endsection
 
+@section('backbutton-spacing', 'mb-0')
+
 @section('content')
     <div class="header-heading">
-        <span>Uraan Urdu Series Worksheets</span>
+        <span>{{ $urduClasses->first()->name ?? 'Uraan Urdu Series Worksheets' }}</span>
     </div>
-    <div class="container mt-5">
+    <div class="container mt-3">
         @if (isset($urduClasses) && count($urduClasses) > 0)
             @php
                 $gradients = [
@@ -42,7 +44,7 @@
                 @if (isset($class->classChapters) && count($class->classChapters) > 0)
                     <div class="row mb-5 audio-item-row">
                         @foreach ($class->classChapters as $chapter)
-                            <div class="col-sm-12 col-md-6 col-xl-3 mb-5">
+                            <div class="col-sm-12 col-md-6 col-xl-3 mb-5 audio-card">
                                 <div class="audio-card-icon"
                                     style="background: {{ $gradients[$loop->index % count($gradients)] }};">
                                     <i class="fa-solid fa-feather"></i>

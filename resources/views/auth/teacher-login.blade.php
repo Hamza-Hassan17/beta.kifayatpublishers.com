@@ -5,16 +5,19 @@
 @section('keywords', '')
 @section('author', '')
 
+@section('auth-page-class', 'teacher-auth-page')
+
 @section('css')
 @endsection
 
 @section('content')
-    <div class="card login-card">
+    <div class="card login-card teacher-login-card">
+        <img class="teacher-login-logo" src="{{ asset('assets/images/logos/kinet.png') }}" alt="Kinet">
         <div class="text-center mb-3">
-            <div class="icon-circle mb-2">
+            <div class="icon-circle teacher-icon mb-2">
                 <i class="fa-solid fa-chalkboard-user"></i>
             </div>
-            <h5 class="fw-bold mb-1">Teachers Login</h5>
+            <h5 class="fw-bold mb-1">Teacher Portal</h5>
             <p class="text-muted">Access your educational resources</p>
         </div>
 
@@ -37,11 +40,11 @@
                 <a href="#" class="text-decoration-none">Forgot password?</a>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100 rounded-3">Sign in</button>
+            <button type="submit" class="btn teacher-login-button w-100 rounded-3">Sign in</button>
         </form>
 
         <p class="text-center mt-3 font-14">
-            Don’t have an account? <a href="{{ route('teacher.register') }}" class="text-primary text-decoration-none">Contact Admin</a>
+            Don’t have an account? <a href="{{ route('teacher.register') }}" class="teacher-login-link text-decoration-none">Contact Admin</a>
         </p>
     </div>
 @endsection

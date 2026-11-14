@@ -10,17 +10,20 @@
 @endsection
 
 @section('backbutton')
-    <a href="{{ route('student.portal') }}" class="btn btn-back">
+    <a href="{{ route('student.audios') }}" class="btn btn-back">
         <i class="fa-solid fa-arrow-left"></i> <span>BACK</span>
     </a>
 @endsection
 
+@section('backbutton-spacing', 'mb-0')
+
 @section('content')
     <div class="header-heading">
-        <span>URDU AUDIOS</span>
+        <span>GRADE {{ $grade }} AUDIOS</span>
     </div>
-    <div class="container mt-5">
+    <div class="container mt-3">
         <!-- Grade 1 -->
+        @if ($grade === 1)
         <div class="item-title mb-5">
             <span>Grade 1</span>
         </div>
@@ -66,7 +69,9 @@
                 <button class="audio-card-button">Listen</button>
             </div>
         </div>
+        @endif
         <!-- Grade 2 -->
+        @if ($grade === 2)
         <div class="item-title mb-5">
             <span>Grade 2</span>
         </div>
@@ -112,7 +117,9 @@
                 <button class="audio-card-button">Listen</button>
             </div>
         </div>
+        @endif
         <!-- Grade 3 -->
+        @if ($grade === 3)
         <div class="item-title mb-5">
             <span>Grade 3</span>
         </div>
@@ -158,7 +165,9 @@
                 <button class="audio-card-button">Listen</button>
             </div>
         </div>
+        @endif
         <!-- Grade 4 -->
+        @if ($grade === 4)
         <div class="item-title mb-5">
             <span>Grade 4</span>
         </div>
@@ -204,7 +213,9 @@
                 <button class="audio-card-button">Listen</button>
             </div>
         </div>
+        @endif
         <!-- Grade 5 -->
+        @if ($grade === 5)
         <div class="item-title mb-5">
             <span>Grade 5</span>
         </div>
@@ -250,7 +261,9 @@
                 <button class="audio-card-button">Listen</button>
             </div>
         </div>
+        @endif
         <!-- Grade 6 -->
+        @if ($grade === 6)
         <div class="item-title mb-5">
             <span>Grade 6</span>
         </div>
@@ -296,7 +309,9 @@
                 <button class="audio-card-button">Listen</button>
             </div>
         </div>
+        @endif
         <!-- Grade 7 -->
+        @if ($grade === 7)
         <div class="item-title mb-5">
             <span>Grade 7</span>
         </div>
@@ -342,7 +357,9 @@
                 <button class="audio-card-button">Listen</button>
             </div>
         </div>
+        @endif
         <!-- Grade 8 -->
+        @if ($grade === 8)
         <div class="item-title mb-5">
             <span>Grade 8</span>
         </div>
@@ -388,6 +405,7 @@
                 <button class="audio-card-button">Listen</button>
             </div>
         </div>
+        @endif
     </div>
 @endsection
 

@@ -4,6 +4,7 @@
 @section('description', '')
 @section('keywords', '')
 @section('author', '')
+@section('page-class', 'teacher-page')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/css/dashboard/teacher-portal.css') }}" />

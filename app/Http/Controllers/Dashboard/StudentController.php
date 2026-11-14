@@ -35,10 +35,29 @@ class StudentController extends Controller
         }
     }
 
-    public function studentAudios()
+    public function studentAudios(?int $grade = null)
     {
         try {
-            return view('dashboard.students.audios');
+            if ($grade === null) {
+                $grades = collect(range(1, 8))->map(function ($grade) {
+                    return (object) [
+                        'name' => "Grade {$grade}",
+                        'slug' => (string) $grade,
+                    ];
+                });
+
+                return view('dashboard.students.resource-classes', [
+                    'classes' => $grades,
+                    'heading' => 'URDU AUDIOS',
+                    'routeName' => 'student.audios.grade',
+                    'routeParameter' => 'grade',
+                    'resourceLabel' => 'audio books',
+                ]);
+            }
+
+            abort_unless($grade >= 1 && $grade <= 8, 404);
+
+            return view('dashboard.students.audios', compact('grade'));
         } catch (\Throwable $th) {
             // throw $th;
             Log::error("Student Audios View Failed:" . $th->getMessage());
@@ -46,10 +65,22 @@ class StudentController extends Controller
         }
     }
 
-    public function studentAnimations()
+    public function studentAnimations(?string $classSlug = null)
     {
         try {
-            $animationClasses = AnimationClass::with('classChapters')->get();
+            if ($classSlug === null) {
+                return view('dashboard.students.resource-classes', [
+                    'classes' => AnimationClass::all(),
+                    'heading' => 'Digital Discovery Animations',
+                    'routeName' => 'student.animations.class',
+                    'routeParameter' => 'class',
+                    'resourceLabel' => 'resources',
+                ]);
+            }
+
+            $animationClass = AnimationClass::with('classChapters')->where('slug', $classSlug)->firstOrFail();
+            $animationClasses = collect([$animationClass]);
+
             return view('dashboard.students.animation', compact('animationClasses'));
         } catch (\Throwable $th) {
             // throw $th;
@@ -77,10 +108,22 @@ class StudentController extends Controller
         return view('dashboard.students.animation-preview', compact('file'));
     }
 
-    public function uraanUrduSeries()
+    public function uraanUrduSeries(?string $classSlug = null)
     {
         try {
-            $urduClasses = UraanUrduClass::with('classChapters')->get();
+            if ($classSlug === null) {
+                return view('dashboard.students.resource-classes', [
+                    'classes' => UraanUrduClass::all(),
+                    'heading' => 'Uraan Urdu Series Worksheets',
+                    'routeName' => 'student.uraan-urdu-series.class',
+                    'routeParameter' => 'class',
+                    'resourceLabel' => 'resources',
+                ]);
+            }
+
+            $urduClass = UraanUrduClass::with('classChapters')->where('slug', $classSlug)->firstOrFail();
+            $urduClasses = collect([$urduClass]);
+
             return view('dashboard.students.uraan-urdu-series', compact('urduClasses'));
         } catch (\Throwable $th) {
             // throw $th;

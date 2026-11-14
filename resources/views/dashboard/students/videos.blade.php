@@ -15,24 +15,26 @@
     </a>
 @endsection
 
+@section('backbutton-spacing', 'mb-0')
+
 @section('content')
     <div class="header-heading">
         <span>Wonderland Videos</span>
     </div>
-    <div class="container item-container mt-5">
-        <div class="item-title mb-5">
+    <div class="container item-container mt-3">
+        <div class="item-title mb-3">
             <span>Workbooks</span>
         </div>
         @include('dashboard.students.sections.work-book-videos')
-        <div class="item-title mt-3 mb-5">
+        <div class="item-title mt-3 mb-3">
             <span>Songs</span>
         </div>
         @include('dashboard.students.sections.songs-videos')
-        <div class="item-title mt-3 mb-5">
+        <div class="item-title mt-3 mb-3">
             <span>Lowercase Formation</span>
         </div>
         @include('dashboard.students.sections.lower-videos')
-        <div class="item-title mt-3 mb-5">
+        <div class="item-title mt-3 mb-3">
             <span>Uppercase Formation</span>
         </div>
         @include('dashboard.students.sections.upper-videos')

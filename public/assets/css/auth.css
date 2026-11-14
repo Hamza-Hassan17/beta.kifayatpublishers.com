@@ -3,7 +3,7 @@ body {
     font-family: 'Poppins', sans-serif;
     overflow: hidden;
     overflow-y: auto;
-    background: linear-gradient(to right, #EFF6FF, #E0E7FF);
+    background: #fff;
 }
 
 input:focus,
@@ -17,7 +17,7 @@ select:focus,
 }
 
 /* .gradient-background {
-    background: linear-gradient(to right, #EFF6FF, #E0E7FF);
+    background: linear-gradient(to right, #fff, #ff6b5a);
     max-height: auto;
 } */
 
@@ -35,7 +35,7 @@ select:focus,
 .icon-circle {
     width: 48px;
     height: 48px;
-    background-color: #2563EB;
+    background-color: #ff6b5a;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -49,8 +49,8 @@ select:focus,
 }
 
 .btn-back {
-    border: 1px solid #009F9F;
-    color: #009F9F;
+    border: 1px solid #ff6b5a;
+    color: #ff6b5a;
     border-radius: 50px;
     padding: 4px 20px;
     width: 100px;
@@ -62,7 +62,7 @@ select:focus,
 }
 
 .btn-back:hover {
-    background-color: #009F9F;
+    background-color: #ff6b5a;
     color: #fff !important;
 }
 
@@ -81,14 +81,19 @@ select:focus,
     height: 14px;
 }
 
+.form-check-input:checked {
+    background-color: #ff6b5a;
+    border-color: #ff6b5a;
+}
+
 .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: #ff6b5a;
+    border-color: #ff6b5a;
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
+    background-color: #e85a4b;
+    border-color: #e85a4b;
 }
 
 a {
@@ -97,4 +102,71 @@ a {
 
 .font-14 {
     font-size: 14px;
+}
+
+.teacher-auth-page {
+    background: #fff;
+}
+
+.teacher-login-card {
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 16px 36px #1f293714;
+}
+
+.teacher-login-logo {
+    display: block;
+    height: 42px;
+    margin: 0 auto 1.5rem;
+    object-fit: contain;
+    width: auto;
+}
+
+.teacher-login-card .teacher-icon {
+    background-color: #ff6b5a;
+}
+
+.teacher-auth-page .btn-back {
+    border-color: #ff6b5a;
+    color: #ff6b5a;
+}
+
+.teacher-auth-page .btn-back:hover {
+    background-color: #ff6b5a;
+    color: #fff !important;
+}
+
+.teacher-login-card .form-control:focus {
+    border-color: #ff6b5a;
+}
+
+.teacher-login-button {
+    background-color: #ff6b5a;
+    border-color: #ff6b5a;
+    color: #fff;
+}
+
+.teacher-login-button:hover,
+.teacher-login-button:focus {
+    background-color: #e85a4b;
+    border-color: #e85a4b;
+    color: #fff;
+}
+
+.teacher-login-link,
+.login-card a,
+.teacher-login-card a {
+    color: #ff6b5a;
+}
+
+.login-card a:hover,
+.teacher-login-card a:hover {
+    color: #e85a4b;
+}
+
+.login-card a.text-primary {
+    color: #ff6b5a !important;
+}
+
+.login-card a.text-primary:hover {
+    color: #e85a4b !important;
 }

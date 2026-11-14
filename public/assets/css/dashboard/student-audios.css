@@ -1,16 +1,31 @@
+body {
+    background: #fff;
+}
+
+.btn-back {
+    border-color: #ff6b5a;
+    color: #ff6b5a;
+}
+
+.btn-back:hover {
+    background: #ff6b5a;
+    color: #fff !important;
+}
+
 .header-heading {
     text-align: center;
     padding: 10px;
-    background: linear-gradient(90deg, rgba(0, 108, 108, 0) 1.97%, #06B6D4 50.55%, rgba(0, 57, 57, 0) 97.29%);
+    background: #fff;
+    border-bottom: 2px solid #ff6b5a;
 }
 
 .header-heading span {
     font-weight: 600;
     font-size: 25px;
-    line-height: 45px;
+    line-height: 1.4;
     letter-spacing: 0%;
     text-transform: uppercase;
-    color: #fff;
+    color: #ff6b5a;
 }
 
 .item-container {
@@ -25,7 +40,62 @@
     font-size: 20px;
     line-height: 36px;
     text-align: center;
-    color: #06B6D4;
+    color: #ff6b5a;
+}
+
+.audio-grade-container {
+    padding-top: 2rem;
+}
+
+.audio-grade-heading {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.audio-grade-heading h1 {
+    color: #1F2937;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.audio-grade-heading p {
+    color: #4B5563;
+    margin-bottom: 0;
+}
+
+.audio-grade-grid {
+    row-gap: 1.5rem;
+}
+
+.audio-grade-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 0.6rem;
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid #E5E7EB;
+    border-radius: 15px;
+    color: #1F2937;
+    box-shadow: 0 8px 20px #1F293714;
+    transition: box-shadow 150ms ease, transform 150ms ease;
+}
+
+.audio-grade-card:hover {
+    box-shadow: 0 12px 24px #1F29371A;
+    color: #1F2937;
+    transform: translateY(-3px) scale(1.01);
+}
+
+.audio-grade-label {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.audio-grade-link {
+    color: #ff6b5a;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 .audio-item-row {
@@ -54,7 +124,7 @@
     padding: 1rem;
     border-radius: 12px;
     border: 1px solid #E5E7EB;
-    box-shadow: 0px 1px 2px 0px #0000000D;
+    box-shadow: 0px 8px 20px 0px #1F293714;
 }
 
 .audio-card-icon {
@@ -95,7 +165,7 @@
 }
 
 .audio-card-button {
-    background: #06B6D4;
+    background: #ff6b5a;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -107,4 +177,11 @@
     font-weight: 600;
     font-size: 14px;
     text-align: center;
+}
+
+.audio-card-button:hover,
+.audio-card-button:focus {
+    background: #fff;
+    border: 1px solid #ff6b5a;
+    color: #ff6b5a;
 }
