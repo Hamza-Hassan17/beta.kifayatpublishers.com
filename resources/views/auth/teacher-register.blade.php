@@ -28,9 +28,17 @@
                 <label class="form-label">Email Address</label>
                 <input type="email" class="form-control" placeholder="Enter your email" name="email">
             </div>
-            <div class="mb-2">
+            <div class="mb-3">
+                <label class="form-label">Phone Number</label>
+                <input type="text" class="form-control" placeholder="Enter your phone number" name="phone">
+            </div>
+            <div class="mb-3">
                 <label class="form-label">Password</label>
                 <input type="password" class="form-control" placeholder="Enter password" name="password">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" placeholder="Enter same password again" name="confirm-password">
             </div>
 
             <div class="d-flex justify-content-between align-items-center mb-3">

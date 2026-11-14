@@ -96,6 +96,15 @@ select:focus,
     border-color: #e85a4b;
 }
 
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:active:focus {
+    background-color: #e85a4b;
+    border-color: #e85a4b;
+    color: #fff;
+    box-shadow: none;
+}
+
 a {
     font-size: 0.85rem;
 }
