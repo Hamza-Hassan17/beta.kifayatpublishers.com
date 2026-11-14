@@ -10,6 +10,7 @@
 
 @section('content')
     <div class="card login-card mt-5">
+        <img class="teacher-login-logo" src="{{ asset('assets/images/logos/kinet.png') }}" alt="Kinet">
         <div class="text-center mb-3">
             <div class="icon-circle mb-2">
                 <i class="fa-solid fa-user-graduate"></i>
