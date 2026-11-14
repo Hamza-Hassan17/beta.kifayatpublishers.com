@@ -59,9 +59,26 @@
                     </span>
                 </a>
             </div>
+
+            <div class="col-md-6">
+                <!-- show toaster that this will be available soon -->
+                <a href="#" class="student-resource-card disabled" onclick="showComingSoonToast(event)">
+                    <span class="icon-box"><i class="fa-solid fa-book"></i></span>
+                    <span class="student-resource-text">
+                        <strong>Digital Books</strong>
+                        <small>Read digital books</small>
+                    </span>
+                </a>
+            </div>
         </div>
     </div>
 @endsection
 
 @section('script')
+<script>
+    function showComingSoonToast(event) {
+        if (event) event.preventDefault();
+        toastr.info('We are doing some final touches. It will be available soon.');
+    }
+</script>
 @endsection

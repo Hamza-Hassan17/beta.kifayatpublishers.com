@@ -140,6 +140,8 @@ class AuthController extends Controller
         $rules = [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'min:11', 'max:11', 'unique:users', 'regex:/^03[0-9]{9}$/'],
+            'confirm-password' => ['required', 'same:password'],
             'password' => ['required', 'string', 'min:8'],
             'terms' => 'required|string|max:255',
         ];
@@ -153,7 +155,7 @@ class AuthController extends Controller
 
         $validate = Validator::make($request->all(), $rules);
         if($validate->fails()){
-            return Redirect::back()->withErrors($validate)->withInput($request->all())->with('error', 'Validation Error!');
+            return Redirect::back()->withErrors($validate);
         }
         try{
             // Begin a transaction
@@ -161,6 +163,7 @@ class AuthController extends Controller
             $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
+            $user->phone = $request->phone;
             $user->password = Hash::make($request->password);
             $user->save();
 

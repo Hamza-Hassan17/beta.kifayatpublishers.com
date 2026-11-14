@@ -10,6 +10,7 @@
 
 @section('content')
     <div class="card login-card mt-5">
+        <img class="teacher-login-logo" src="{{ asset('assets/images/logos/kinet.png') }}" alt="Kinet">
         <div class="text-center mb-3">
             <div class="icon-circle mb-2">
                 <i class="fa-solid fa-user-graduate"></i>
@@ -28,9 +29,17 @@
                 <label class="form-label">Email Address</label>
                 <input type="email" class="form-control" placeholder="Enter your email" name="email">
             </div>
-            <div class="mb-2">
+            <div class="mb-3">
+                <label class="form-label">Phone Number</label>
+                <input type="text" class="form-control" placeholder="Enter your phone number" name="phone">
+            </div>
+            <div class="mb-3">
                 <label class="form-label">Password</label>
                 <input type="password" class="form-control" placeholder="Enter password" name="password">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" placeholder="Enter same password again" name="confirm-password">
             </div>
 
             <div class="d-flex justify-content-between align-items-center mb-3">

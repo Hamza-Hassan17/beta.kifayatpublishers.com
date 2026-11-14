@@ -93,14 +93,14 @@ a {
 
 .sidebar-link:hover {
     background-color: #f1f5f9;
-    color: #009F9F;
+    color: #ff6b5a;
     text-decoration: none;
 }
 
 .btn-logout {
     background-color: transparent;
-    border: 1px solid #009F9F;
-    color: #009F9F;
+    border: 1px solid #ff6b5a;
+    color: #ff6b5a;
     border-radius: 50px;
     padding: 8px 20px;
     font-size: 14px;
@@ -108,6 +108,7 @@ a {
 }
 
 .btn-logout:hover {
-    background-color: #009F9F;
-    color: #fff;
+    background-color: transparent;
+    border-color: #ff6b5a;
+    color: #ff6b5a;
 }

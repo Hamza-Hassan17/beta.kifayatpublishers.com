@@ -33,10 +33,9 @@
                                 ->map(fn($part) => strtoupper($part[0]))
                                 ->take(2)
                                 ->implode('');
-                            $colors = ['#F87171', '#60A5FA', '#34D399', '#FBBF24', '#A78BFA', '#F472B6', '#38BDF8'];
-                            $color = $colors[crc32($name) % count($colors)];
+                            
                         @endphp
-                        <div class="user-avatar" style="background-color: {{ $color }};" id="profilePreviewInitials">
+                        <div class="user-avatar" style="background-color: #ff6b5a;" id="profilePreviewInitials">
                             {{ $initials }}
                         </div>
                     @endif
