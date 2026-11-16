@@ -23,8 +23,7 @@ class AuthController extends Controller
         // }
     }
 
-    public function teacherLogin()
-    {
+    public function teacherLogin(){
         if (Auth::check()) {
             return redirect()->route('teacher.portal');
         } else {
@@ -249,10 +248,12 @@ class AuthController extends Controller
         }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         try {
             Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
             Log::info("Logout Successfully!");
             return Redirect::route('choose-portal')->with('success', 'Logout Successfully!');
         } catch (\Throwable $th) {

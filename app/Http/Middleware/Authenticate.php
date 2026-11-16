@@ -14,4 +14,17 @@ class Authenticate extends Middleware
     {
         return $request->expectsJson() ? null : route('choose-portal');
     }
+
+    public function handle($request, \Closure $next, ...$guards)
+    {
+        $response = parent::handle($request, $next, ...$guards);
+
+        $response->headers->add([
+            'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+            'Pragma' => 'no-cache',
+            'Expires' => '0',
+        ]);
+
+        return $response;
+    }
 }
