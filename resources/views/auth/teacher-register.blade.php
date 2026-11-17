@@ -19,7 +19,7 @@
             <p class="text-muted">Register your account to access resources</p>
         </div>
 
-        <form action="{{ route('student.register.attempt') }}" method="POST">
+        <form action="{{ route('teacher.register.attempt') }}" method="POST">
             @csrf
             <div class="mb-3">
                 <label class="form-label">Name</label>
