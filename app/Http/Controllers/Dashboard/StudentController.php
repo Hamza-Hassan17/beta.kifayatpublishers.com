@@ -151,4 +151,13 @@ class StudentController extends Controller
 
         return view('dashboard.students.urdu-preview', compact('file'));
     }
+
+    public function library(){
+        $books = [[
+            "name" => "Urdu book",
+            "isbn" => "12345678",
+            "author" => "Muneeb Masood"
+        ]];
+        return view('dashboard.students.student-library', ['books' => $books]);
+    }
 }

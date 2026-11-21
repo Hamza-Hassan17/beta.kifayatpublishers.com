@@ -79,6 +79,7 @@ Route::get('/', function (Request $request) {
         Route::get('/uraan-urdu-series/{class}', [StudentController::class, 'uraanUrduSeries'])->name('uraan-urdu-series.class');
         Route::get('/uraan-urdu-series/{class}/{chapter}', [StudentController::class, 'urduChapterDetails'])->name('uraan-urdu-series.chapter');
         Route::get('/uraan-urdu-preview', [StudentController::class, 'urduPreview'])->name('uraan-urdu.preview');
+        Route::get('/student-library', [StudentController::class, 'library'])->name('library');
 
     });
 

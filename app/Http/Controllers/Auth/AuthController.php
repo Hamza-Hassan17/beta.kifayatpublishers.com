@@ -109,7 +109,6 @@ class AuthController extends Controller
             return view('auth.student-register');
         }
     }
-
     public function student_register_attempt(Request $request){
 
         $rules = [
@@ -162,6 +161,9 @@ class AuthController extends Controller
         }
     }
 
+    public function teacher_register(){
+        return view('auth.teacher-register');
+    }
     public function teacher_register_attempt(Request $request){
 
         $rules = [

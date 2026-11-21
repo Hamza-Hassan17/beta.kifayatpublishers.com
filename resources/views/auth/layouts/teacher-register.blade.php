@@ -1,0 +1,1 @@
+@extends('auth.register', ['isStudent' => false])

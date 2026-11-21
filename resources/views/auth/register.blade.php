@@ -8,6 +8,7 @@
 @section('css')
 @endsection
 
+@php($isStudent = $isStudent ?? false)
 @section('content')
     <div class="card login-card mt-5">
         <img class="teacher-login-logo" src="{{ asset('assets/images/logos/kinet.png') }}" alt="Kinet">
@@ -16,7 +17,13 @@
                 <i class="fa-solid fa-user-graduate"></i>
             </div>
             <h5 class="fw-bold mb-1">Register</h5>
-            <p class="text-muted">Register your account to access resources</p>
+            <p class="text-muted">
+                @if ($isStudent)
+                    Register your account to access resources
+                @else
+                    Register your teacher account to access resources
+                @endif
+            </p>
         </div>
 
         <form action="{{ route('teacher.register.attempt') }}" method="POST">
