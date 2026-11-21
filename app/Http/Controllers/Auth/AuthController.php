@@ -17,10 +17,6 @@ class AuthController extends Controller
     public function studentLogin()
     {
         return redirect()->route('student.portal');
-        // if (Auth::check()) {
-        // } else {
-        //     return view('auth.student-login');
-        // }
     }
 
     public function teacherLogin(){
@@ -80,18 +76,10 @@ class AuthController extends Controller
 
     public function teacher_login_attempt(Request $request)
     {
-        // Validate the form
         $rules = [
             'email' => 'required|email|max:50',
             'password' => 'required',
         ];
-
-        // If captcha is used
-        // if (config('captcha.version') !== 'no_captcha') {
-        //     $rules['g-recaptcha-response'] = 'required|captcha';
-        // } else {
-        //     $rules['g-recaptcha-response'] = 'nullable';
-        // }
 
         $validate = Validator::make($request->all(), $rules);
         if ($validate->fails()) {
@@ -99,24 +87,12 @@ class AuthController extends Controller
         }
 
         try {
-            $userfind = User::where('email', $request->email)->first();
+            if(Auth::attempt(["email" => $request->email, "password" => $request->password])){
+                if(Auth::check()){
+                    return redirect('teacher.portal')->with('success', 'Welcome, Login successful');
+            }}
 
-            if ($userfind) {
-                // Check if the password is correct
-                if (Hash::check($request->password, $userfind->password)) {
-                    // Password matched
-                    $remember_me = $request->remember ? true : false;
-                    Auth::attempt(['email' => $userfind->email, 'password' => $request->password], $remember_me);
-
-                    if (Auth::check()) {
-                        return redirect()->route('teacher.portal')->with('success', "Login successfully!");
-                    } else {
-                        return redirect()->back()->withInput($request->all())->with('error', 'Authentication Error');
-                    }
-                } else {
-                    return redirect()->back()->withInput($request->all())->with('error', 'Password is mismatch');
-                }
-            } else {
+            else {
                 return redirect()->back()->withInput($request->all())->with('error', "Invalid credentials");
             }
         } catch (\Throwable $th) {
@@ -142,22 +118,16 @@ class AuthController extends Controller
             'phone' => ['required', 'min:11', 'max:11', 'unique:users', 'regex:/^03[0-9]{9}$/'],
             'confirm-password' => ['required', 'same:password'],
             'password' => ['required', 'string', 'min:8'],
-            'terms' => 'required|string|max:255',
+            'class' => ['required', 'string', 'min:1', 'max:255'],
+            'school' => ['required', 'string', 'min:1', 'max:255'],
+
+
         ];
-
-        // Make 'g-recaptcha-response' nullable if CAPTCHA is not enabled
-        // if (config('captcha.version') !== 'no_captcha') {
-        //     $rules['g-recaptcha-response'] = 'required|captcha';
-        // } else {
-        //     $rules['g-recaptcha-response'] = 'nullable';
-        // }
-
         $validate = Validator::make($request->all(), $rules);
         if($validate->fails()){
             return Redirect::back()->withErrors($validate);
         }
         try{
-            // Begin a transaction
             DB::beginTransaction();
             $user = new User();
             $user->name = $request->name;
@@ -166,25 +136,20 @@ class AuthController extends Controller
             $user->password = Hash::make($request->password);
             $user->save();
 
-            // Attempt to authenticate
             Auth::attempt(['email' => $request->email, 'password' => $request->password]);
 
             if (Auth::check()) {
-                // Commit the transaction
                 DB::commit();
                 return redirect()->route('student.portal')->with('success','Your account has been created successfully.');
             }else{
-                // Rollback the transaction
                 DB::rollback();
                 return redirect()->back()->withInput($request->all())->with('error', 'Authentication Error');
             }
 
         } catch (\Throwable $th) {
             DB::rollback();
-            // Log the error for debugging
             Log::error('User registration failed', ['error' => $th->getMessage()]);
             return redirect()->back()->withInput($request->all())->with('error', "Something went wrong! Please try again later");
-            // throw $th;
         }
     }
 
@@ -207,19 +172,12 @@ class AuthController extends Controller
             'terms' => 'required|string|max:255',
         ];
 
-        // Make 'g-recaptcha-response' nullable if CAPTCHA is not enabled
-        // if (config('captcha.version') !== 'no_captcha') {
-        //     $rules['g-recaptcha-response'] = 'required|captcha';
-        // } else {
-        //     $rules['g-recaptcha-response'] = 'nullable';
-        // }
 
         $validate = Validator::make($request->all(), $rules);
         if($validate->fails()){
             return Redirect::back()->withErrors($validate)->withInput($request->all())->with('error', 'Validation Error!');
         }
         try{
-            // Begin a transaction
             DB::beginTransaction();
             $user = new User();
             $user->name = $request->name;
@@ -228,25 +186,20 @@ class AuthController extends Controller
             $user->password = Hash::make($request->password);
             $user->save();
 
-            // Attempt to authenticate
-            Auth::attempt(['email' => $request->email, 'password' => $request->password]);
+            Auth::login($user);
 
             if (Auth::check()) {
-                // Commit the transaction
                 DB::commit();
                 return redirect()->route('teacher.portal')->with('success','Your account has been created successfully.');
             }else{
-                // Rollback the transaction
                 DB::rollback();
                 return redirect()->back()->withInput($request->all())->with('error', 'Authentication Error');
             }
 
         } catch (\Throwable $th) {
             DB::rollback();
-            // Log the error for debugging
             Log::error('User registration failed', ['error' => $th->getMessage()]);
             return redirect()->back()->withInput($request->all())->with('error', "Something went wrong! Please try again later");
-            // throw $th;
         }
     }
 

@@ -70,6 +70,16 @@
                     </span>
                 </a>
             </div>
+
+            <div class="col-md-6">
+                <a href="{{ route('student.library') }}" class="student-resource-card disabled">
+                    <span class="icon-box"><i class="fa-solid fa-book"></i></span>
+                    <span class="student-resource-text">
+                        <strong>Your Library</strong>
+                        <small>Access your digital books here</small>
+                    </span>
+                </a>
+            </div>
         </div>
     </div>
 @endsection
