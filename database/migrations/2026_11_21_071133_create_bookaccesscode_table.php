@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('bookaccesscode', function (Blueprint $table) {
             $table->id();
             $table->foreignId('book_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('code_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('code_id')->constrained('accesscode')->cascadeOnDelete();
             $table->timestamps();
         });
     }

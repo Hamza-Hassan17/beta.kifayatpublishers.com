@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('isbn');
             $table->foreignId('author_id')->constrained('author')->onDelete('cascade');
-            $table->foreignId('class_id')->constrained('class')->onDelete('cascade');
+            $table->foreignId('grade_id')->constrained('grade')->onDelete('cascade');
             $table->foreignId('series_id')->constrained('series')->onDelete('cascade');
             $table->integer('price');
             $table->timestamps();

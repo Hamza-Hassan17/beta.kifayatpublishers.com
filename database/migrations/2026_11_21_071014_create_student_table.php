@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('password');
             $table->foreignId('school_id')->constrained('school')->onDelete('cascade');
-            $table->foreignId('class_id')->constrained('class')->onDelete('cascade');
+            $table->foreignId('grade_id')->constrained('grade')->onDelete('cascade');
             $table->timestamps();
         });
     }
