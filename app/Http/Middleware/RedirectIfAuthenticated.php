@@ -21,10 +21,26 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                if ($request->routeIs('teacher.login', 'teacher.register')) {
+                    return redirect()->route('teacher.portal');
+                }
+
+                if ($request->routeIs('student.login', 'student.register')) {
+                    return redirect()->route('student.portal');
+                }
+
                 return redirect(RouteServiceProvider::HOME);
             }
         }
 
-        return $next($request);
+        $response = $next($request);
+
+        $response->headers->add([
+            'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+            'Pragma' => 'no-cache',
+            'Expires' => '0',
+        ]);
+
+        return $response;
     }
 }

@@ -23,8 +23,7 @@ class AuthController extends Controller
         // }
     }
 
-    public function teacherLogin()
-    {
+    public function teacherLogin(){
         if (Auth::check()) {
             return redirect()->route('teacher.portal');
         } else {
@@ -203,6 +202,7 @@ class AuthController extends Controller
         $rules = [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'min:11', 'max:11', 'unique:users', 'regex:/^03[0-9]{9}$/'],
             'password' => ['required', 'string', 'min:8'],
             'terms' => 'required|string|max:255',
         ];
@@ -224,6 +224,7 @@ class AuthController extends Controller
             $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
+            $user->phone = $request->phone;
             $user->password = Hash::make($request->password);
             $user->save();
 
@@ -249,10 +250,12 @@ class AuthController extends Controller
         }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         try {
             Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
             Log::info("Logout Successfully!");
             return Redirect::route('choose-portal')->with('success', 'Logout Successfully!');
         } catch (\Throwable $th) {
