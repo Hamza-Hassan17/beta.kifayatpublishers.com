@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Student;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -16,210 +17,168 @@ class AuthController extends Controller
 {
     public function studentLogin()
     {
-        $user = Auth::user();
-        if (! $user) {
-            return view('auth.student-login');
+        if (Auth::guard('student')->check()) {
+            return redirect()->route('student.portal');
         }
-        return redirect()->route('student.portal');
+        return view('auth.student-login');
     }
 
-    public function teacherLogin(){
-        if (Auth::check()) {
+    public function teacherLogin()
+    {
+        if (Auth::guard('teacher')->check()) {
             return redirect()->route('teacher.portal');
-        } else {
-            return view('auth.teacher-login');
         }
+        return view('auth.teacher-login');
     }
 
     public function student_login_attempt(Request $request)
     {
-        // Validate the form
-        $rules = [
-            'email' => 'required|email|max:50',
-            'password' => 'required',
-        ];
-
-        // If captcha is used
-        // if (config('captcha.version') !== 'no_captcha') {
-        //     $rules['g-recaptcha-response'] = 'required|captcha';
-        // } else {
-        //     $rules['g-recaptcha-response'] = 'nullable';
-        // }
-
-        $validate = Validator::make($request->all(), $rules);
-        if ($validate->fails()) {
-            return Redirect::back()->withErrors($validate)->withInput($request->all())->with('error', 'Validation Error!');
-        }
-
-        try {
-            $userfind = User::where('email', $request->email)->first();
-
-            if ($userfind) {
-                // Check if the password is correct
-                if (Hash::check($request->password, $userfind->password)) {
-                    // Password matched
-                    $remember_me = $request->remember ? true : false;
-                    Auth::attempt(['email' => $userfind->email, 'password' => $request->password], $remember_me);
-
-                    if (Auth::check()) {
-                        return redirect()->route('student.portal')->with('success', "Login successfully!");
-                    } else {
-                        return redirect()->back()->withInput($request->all())->with('error', 'Authentication Error');
-                    }
-                } else {
-                    return redirect()->back()->withInput($request->all())->with('error', 'Password is mismatch');
-                }
-            } else {
-                return redirect()->back()->withInput($request->all())->with('error', "Invalid credentials");
-            }
-        } catch (\Throwable $th) {
-            Log::error("Failed to Login:" . $th->getMessage());
-            return redirect()->back()->withInput($request->all())->with('error', "Something went wrong! Please try again later");
-        }
+        return $this->loginAttempt($request, 'student', 'student.portal');
     }
 
     public function teacher_login_attempt(Request $request)
     {
-        $rules = [
+        return $this->loginAttempt($request, 'teacher', 'teacher.portal');
+    }
+
+    /**
+     * Shared login logic. Only accounts from the given guard's own table
+     * (student / teacher) can log in, so a student can never obtain a teacher session.
+     */
+    private function loginAttempt(Request $request, string $guard, string $portalRoute)
+    {
+        $validate = Validator::make($request->all(), [
             'email' => 'required|email|max:50',
             'password' => 'required',
-        ];
-
-        $validate = Validator::make($request->all(), $rules);
+        ]);
         if ($validate->fails()) {
-            return Redirect::back()->withErrors($validate)->withInput($request->all())->with('error', 'Validation Error!');
+            return Redirect::back()->withErrors($validate)->withInput($request->except('password'))->with('error', 'Validation Error!');
         }
 
         try {
-            if(Auth::attempt(["email" => $request->email, "password" => $request->password])){
-                if(Auth::check()){
-                    return redirect('teacher')->with('success', 'Welcome, Login successful');
-            }}
+            $remember = $request->boolean('remember');
 
-            else {
-                return redirect()->back()->withInput($request->all())->with('error', "Invalid credentials");
+            if (Auth::guard($guard)->attempt($request->only('email', 'password'), $remember)) {
+                $request->session()->regenerate();
+                return redirect()->route($portalRoute)->with('success', 'Welcome, Login successful');
             }
+
+            return redirect()->back()->withInput($request->except('password'))->with('error', 'Invalid credentials');
         } catch (\Throwable $th) {
-            Log::error("Failed to Login:" . $th->getMessage());
-            return redirect()->back()->withInput($request->all())->with('error', "Something went wrong! Please try again later");
+            Log::error("Failed to Login ({$guard}): " . $th->getMessage());
+            return redirect()->back()->withInput($request->except('password'))->with('error', 'Something went wrong! Please try again later');
         }
     }
 
     public function studentRegister()
     {
-        if (Auth::check()) {
+        if (Auth::guard('student')->check()) {
             return redirect()->route('student.portal');
-        } else {
-            return view('auth.student-register');
         }
+        return view('auth.student-register');
     }
-    public function student_register_attempt(Request $request){
 
-        $rules = [
+    public function student_register_attempt(Request $request)
+    {
+        $validate = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['required', 'min:11', 'max:11', 'unique:users', 'regex:/^03[0-9]{9}$/'],
-            'confirm-password' => ['required', 'same:password'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:student,email'],
+            'phone' => ['required', 'string', 'regex:/^03[0-9]{9}$/'],
             'password' => ['required', 'string', 'min:8'],
-            'class' => ['required', 'string', 'min:1', 'max:255'],
-            'school' => ['required', 'string', 'min:1', 'max:255'],
-
-
-        ];
-        $validate = Validator::make($request->all(), $rules);
-        if($validate->fails()){
-            return Redirect::back()->withErrors($validate);
+            'confirm-password' => ['required', 'same:password'],
+            'school' => ['required', 'exists:school,id'],
+            'grade' => ['required', 'exists:grade,id'],
+            'roll_number' => ['nullable', 'string', 'max:255'],
+        ]);
+        if ($validate->fails()) {
+            return Redirect::back()->withErrors($validate)->withInput($request->except('password', 'confirm-password'));
         }
-        try{
+
+        try {
             DB::beginTransaction();
-            $user = new User();
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->phone = $request->phone;
-            $user->password = Hash::make($request->password);
-            $user->save();
+            $student = Student::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'password' => Hash::make($request->password),
+                'school_id' => $request->school,
+                'grade_id' => $request->grade,
+                'roll_number' => $request->roll_number,
+            ]);
+            DB::commit();
 
-            Auth::attempt(['email' => $request->email, 'password' => $request->password]);
+            Auth::guard('student')->login($student);
+            $request->session()->regenerate();
 
-            if (Auth::check()) {
-                DB::commit();
-                return redirect()->route('student.portal')->with('success','Your account has been created successfully.');
-            }else{
-                DB::rollback();
-                return redirect()->back()->withInput($request->all())->with('error', 'Authentication Error');
-            }
-
+            return redirect()->route('student.portal')->with('success', 'Your account has been created successfully.');
         } catch (\Throwable $th) {
             DB::rollback();
-            Log::error('User registration failed', ['error' => $th->getMessage()]);
-            return redirect()->back()->withInput($request->all())->with('error', "Something went wrong! Please try again later");
+            Log::error('Student registration failed', ['error' => $th->getMessage()]);
+            return redirect()->back()->withInput($request->except('password', 'confirm-password'))->with('error', 'Something went wrong! Please try again later');
         }
     }
 
     public function teacherRegister()
     {
-        if (Auth::check()) {
+        if (Auth::guard('teacher')->check()) {
             return redirect()->route('teacher.portal');
-        } else {
-            return view('auth.layouts.teacher-register');
         }
-    }
-
-    public function teacher_register(){
         return view('auth.teacher-register');
     }
-    public function teacher_register_attempt(Request $request){
 
-        $rules = [
+    public function teacher_register()
+    {
+        return view('auth.teacher-register');
+    }
+
+    public function teacher_register_attempt(Request $request)
+    {
+        $validate = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['required', 'min:11', 'max:11', 'unique:users', 'regex:/^03[0-9]{9}$/'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:teacher,email'],
+            'phone' => ['required', 'string', 'regex:/^03[0-9]{9}$/'],
             'password' => ['required', 'string', 'min:8'],
+            'school' => ['required', 'exists:school,id'],
             'terms' => 'required|string|max:255',
-        ];
-
-
-        $validate = Validator::make($request->all(), $rules);
-        if($validate->fails()){
-            return Redirect::back()->withErrors($validate)->withInput($request->all())->with('error', 'Validation Error!');
+        ]);
+        if ($validate->fails()) {
+            return Redirect::back()->withErrors($validate)->withInput($request->except('password'))->with('error', 'Validation Error!');
         }
-        try{
+
+        try {
             DB::beginTransaction();
-            $user = new User();
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->phone = $request->phone;
-            $user->password = Hash::make($request->password);
-            $user->save();
+            $teacher = Teacher::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'password' => Hash::make($request->password),
+                'school_id' => $request->school,
+            ]);
+            DB::commit();
 
-            Auth::login($user);
+            Auth::guard('teacher')->login($teacher);
+            $request->session()->regenerate();
 
-            if (Auth::check()) {
-                DB::commit();
-                return redirect()->route('teacher.portal')->with('success','Your account has been created successfully.');
-            }else{
-                DB::rollback();
-                return redirect()->back()->withInput($request->all())->with('error', 'Authentication Error');
-            }
-
+            return redirect()->route('teacher.portal')->with('success', 'Your account has been created successfully.');
         } catch (\Throwable $th) {
             DB::rollback();
-            Log::error('User registration failed', ['error' => $th->getMessage()]);
-            return redirect()->back()->withInput($request->all())->with('error', "Something went wrong! Please try again later");
+            Log::error('Teacher registration failed', ['error' => $th->getMessage()]);
+            return redirect()->back()->withInput($request->except('password'))->with('error', 'Something went wrong! Please try again later');
         }
     }
 
     public function logout(Request $request)
     {
         try {
-            Auth::logout();
+            Auth::guard('student')->logout();
+            Auth::guard('teacher')->logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
-            Log::info("Logout Successfully!");
+            Log::info('Logout Successfully!');
             return Redirect::route('choose-portal')->with('success', 'Logout Successfully!');
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
-            return Redirect::back()->with('error', "Something went wrong! Please try again later");
+            return Redirect::back()->with('error', 'Something went wrong! Please try again later');
         }
     }
 }

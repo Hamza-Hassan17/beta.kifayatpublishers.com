@@ -36,7 +36,8 @@ class ProfileController extends Controller
             return redirect()->back()->withErrors($validator)->withInput($request->all())->with('error', 'Validation Error!');
         }
         try {
-            $user = User::findOrFail(Auth::user()->id);
+            // auth:student,teacher middleware sets the default guard to whichever one is logged in
+            $user = Auth::user();
             $user->name = $request->name;
             $user->phone = $request->phone;
 

@@ -21,11 +21,11 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                if ($request->routeIs('teacher.login', 'teacher.register')) {
+                if ($guard === 'teacher') {
                     return redirect()->route('teacher.portal');
                 }
 
-                if ($request->routeIs('student.login', 'student.register')) {
+                if ($guard === 'student') {
                     return redirect()->route('student.portal');
                 }
 

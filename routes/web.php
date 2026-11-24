@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 // Auth::routes();
 Route::get('/', function (Request $request) {
-    if (Auth::check()) {
+    if (Auth::guard('student')->check() || Auth::guard('teacher')->check()) {
         return view('frontend.pages.choose-portal', ['selectedRole' => session('selected_role')]);
     }
 
@@ -45,7 +45,7 @@ Route::get('/', function (Request $request) {
 })->name('choose-portal');
 // Guest Routes hh
 
-    Route::middleware('guest')->group(function () {
+    Route::middleware('guest:student,teacher')->group(function () {
         //User Login Authentication Routes
         Route::get('student/login', [AuthController::class, 'studentLogin'])->name('student.login');
         Route::get('teacher/login', [AuthController::class, 'teacherLogin'])->name('teacher.login');
@@ -60,7 +60,7 @@ Route::get('/', function (Request $request) {
 
     });
     //Student Portal Routes
-    Route::prefix('student')->name('student.')->group(function () {
+    Route::middleware('auth:student')->prefix('student')->name('student.')->group(function () {
         Route::get('/', [StudentController::class, 'studentPortal'])->name('portal');
         Route::get('/videos', [StudentController::class, 'studentVideos'])->name('videos');
         Route::get('/audios', [StudentController::class, 'studentAudios'])->name('audios');
@@ -85,19 +85,17 @@ Route::get('/', function (Request $request) {
 
 // Authentication Routes
 
-// separate the routes for authenticated users and now we wanna divide it based on the student and teacher
-
-Route::group(['middleware' => ['auth']], function () {
+// Routes for any logged-in student or teacher
+Route::group(['middleware' => ['auth:student,teacher']], function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('profile/update', [ProfileController::class, 'update'])->name('profile.update');
+});
 
-
-    //Teacher Portal Routes
-     Route::prefix('teacher')->name('teacher.')->group(function () {
-        Route::get('/', [TeacherController::class, 'teacherPortal'])->name('portal');
-        Route::get('/answer-kit/{subject?}/{class?}', [TeacherController::class, 'teacherAnswerKit'])->name('answer-kit');
-        Route::get('/resource-kit/{subject?}/{class?}', [TeacherController::class, 'teacherResourceKit'])->name('resource-kit');
-    });
+// Teacher-only routes (students get redirected away)
+Route::middleware('auth:teacher')->prefix('teacher')->name('teacher.')->group(function () {
+    Route::get('/', [TeacherController::class, 'teacherPortal'])->name('portal');
+    Route::get('/answer-kit/{subject?}/{class?}', [TeacherController::class, 'teacherAnswerKit'])->name('answer-kit');
+    Route::get('/resource-kit/{subject?}/{class?}', [TeacherController::class, 'teacherResourceKit'])->name('resource-kit');
 });
