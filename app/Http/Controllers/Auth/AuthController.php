@@ -16,6 +16,10 @@ class AuthController extends Controller
 {
     public function studentLogin()
     {
+        $user = Auth::user();
+        if (! $user) {
+            return view('auth.student-login');
+        }
         return redirect()->route('student.portal');
     }
 
@@ -89,7 +93,7 @@ class AuthController extends Controller
         try {
             if(Auth::attempt(["email" => $request->email, "password" => $request->password])){
                 if(Auth::check()){
-                    return redirect('teacher.portal')->with('success', 'Welcome, Login successful');
+                    return redirect('teacher')->with('success', 'Welcome, Login successful');
             }}
 
             else {
@@ -157,7 +161,7 @@ class AuthController extends Controller
         if (Auth::check()) {
             return redirect()->route('teacher.portal');
         } else {
-            return view('auth.teacher-register');
+            return view('auth.layouts.teacher-register');
         }
     }
 

@@ -9,6 +9,7 @@
 @endsection
 
 @php($isStudent = $isStudent ?? false)
+@endphp
 @section('content')
     <div class="card login-card mt-5">
         <img class="teacher-login-logo" src="{{ asset('assets/images/logos/kinet.png') }}" alt="Kinet">
@@ -26,7 +27,7 @@
             </p>
         </div>
 
-        <form action="{{ route('teacher.register.attempt') }}" method="POST">
+        <form action="{{ route($isStudent ? 'student.register.attempt' : 'teacher.register.attempt') }}" method="POST">
             @csrf
             <div class="mb-3">
                 <label class="form-label">Name</label>
@@ -40,7 +41,35 @@
                 <label class="form-label">Phone Number</label>
                 <input type="text" class="form-control" placeholder="Enter your phone number" name="phone">
             </div>
+           
             <div class="mb-3">
+                @php
+                $schools = \App\Models\School::all();
+                @endphp
+                <label class="form-label">Select your School</label>
+                <select class="form-control" name="school" required>
+                    @foreach ($schools as $school)
+                        <option value="{{ $school->id }}">{{ $school->name }}</option>
+                    @endforeach
+            </div>
+            
+            @if ($isStudent)
+                @php
+                    $grades = \App\Models\Grade::all();
+                @endphp
+                <div class="mb-3">
+                <label class="form-label">Select your Grade</label>
+                <!-- select your grade with dropdown type -->
+               <select class="form-control" name="grade" required>
+                @foreach ($grades as $grade)
+                    <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                
+                @endforeach
+                </select>
+            </div> 
+            @endif
+
+             <div class="mb-3">
                 <label class="form-label">Password</label>
                 <input type="password" class="form-control" placeholder="Enter password" name="password">
             </div>
@@ -48,7 +77,6 @@
                 <label class="form-label">Confirm Password</label>
                 <input type="password" class="form-control" placeholder="Enter same password again" name="confirm-password">
             </div>
-
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="terms" name="terms" checked>

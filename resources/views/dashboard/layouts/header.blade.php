@@ -8,7 +8,7 @@
     {{-- <img src="{{ asset('assets/images/account/profile.png') }}" alt="User" class="avatar" data-bs-toggle="offcanvas"
         data-bs-target="#sidebarOffcanvas" aria-controls="sidebarOffcanvas"> --}}
 
-    @if (!request()->routeIs('student.*'))
+  
         @if (Auth::user()->profile_img)
             <img src="{{ asset(Auth::user()->profile_img) }}" alt="User" class="avatar" data-bs-toggle="offcanvas"
                 data-bs-target="#sidebarOffcanvas" aria-controls="sidebarOffcanvas">
@@ -25,11 +25,10 @@
                 {{ $initials }}
             </div>
         @endif
-    @endif
+
 </div>
 
 <!-- Offcanvas Sidebar -->
-@if (!request()->routeIs('student.*'))
     <div class="offcanvas offcanvas-end custom-sidebar" tabindex="-1" id="sidebarOffcanvas">
         <div class="offcanvas-header border-bottom">
             <h5 class="offcanvas-title">{{ Auth::user()->name }}</h5>
@@ -51,4 +50,4 @@
             </form>
         </div>
     </div>
-@endif
+

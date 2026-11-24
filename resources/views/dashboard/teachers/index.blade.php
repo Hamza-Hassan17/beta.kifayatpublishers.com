@@ -10,12 +10,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/dashboard/teacher-portal.css') }}" />
 @endsection
 
-@section('backbutton')
-    <a href="{{ route('choose-portal') }}" class="btn btn-back">
-        <i class="fa-solid fa-arrow-left"></i> <span>BACK</span>
-    </a>
-@endsection
-
 @section('content')
     <div class="container">
         <!-- Welcome Section -->

@@ -85,6 +85,8 @@ Route::get('/', function (Request $request) {
 
 // Authentication Routes
 
+// separate the routes for authenticated users and now we wanna divide it based on the student and teacher
+
 Route::group(['middleware' => ['auth']], function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
