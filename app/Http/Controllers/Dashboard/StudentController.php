@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\AccessCode;
 use App\Models\AnimationClass;
 use App\Models\ClassChapter;
 use App\Models\UraanUrduClass;
@@ -156,5 +157,41 @@ class StudentController extends Controller
     public function library(){
         $books = Auth::guard('student')->user()->books()->with('author')->get();
         return view('dashboard.students.student-library', ['books' => $books]);
+    }
+
+    public function redeem(Request $request)
+    {
+        $validate = Validator::make($request->all(), [
+            'access_code' => 'required|string|max:255',
+        ]);
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate);
+        }
+
+        try {
+            $code = AccessCode::with('books')->where('code', trim($request->access_code))->first();
+
+            if (!$code || $code->books->isEmpty()) {
+                return redirect()->back()->with('error', 'Invalid access code');
+            }
+
+            $alreadyRedeemed = Auth::guard('student')->user()->books()->whereIn('books.id', $code->books->pluck('id'))->exists();
+
+            if ($alreadyRedeemed) {
+                return redirect()->back()->with('error', 'This access code has already been redeemed');
+            }
+
+            $student = Auth::guard('student')->user();
+            $changes = $student->books()->syncWithoutDetaching($code->books->pluck('id')->all());
+
+            if (empty($changes['attached'])) {
+                return redirect()->back()->with('error', 'This book is already in your library');
+            }
+
+            return redirect()->route('student.library')->with('success', 'Book added to your library');
+        } catch (\Throwable $th) {
+            Log::error('Failed to redeem access code: ' . $th->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong! Please try again later');
+        }
     }
 }

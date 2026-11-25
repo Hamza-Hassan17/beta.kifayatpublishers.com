@@ -62,17 +62,18 @@
                     <h5 class="modal-title" id="redeemBookModalLabel">Redeem Book</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <form class="modal-body" method="POST" action="{{ route('student.library.redeem') }}">
+                    @csrf
                     <div class="redeem-icon">
                         <i class="fa-solid fa-key"></i>
                     </div>
                     <div class="mb-3">
                         <label for="accessCode" class="form-label">Enter Access Code</label>
                         <input type="text" class="form-control" id="accessCode" name="access_code"
-                            placeholder="Enter access code" autocomplete="off">
+                            placeholder="Enter access code" autocomplete="off" required>
                     </div>
-                    <button type="button" class="btn-redeem-now">Redeem Now</button>
-                </div>
+                    <button type="submit" class="btn-redeem-now">Redeem Now</button>
+                </form>
             </div>
         </div>
     </div>
