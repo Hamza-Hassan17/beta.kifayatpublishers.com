@@ -1,0 +1,188 @@
+body {
+    background: #fff;
+}
+
+.header-heading {
+    text-align: center;
+    padding: 10px;
+    background: #fff;
+    border-bottom: 2px solid #ff6b5a;
+}
+
+.header-heading span {
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 1.4;
+    text-transform: uppercase;
+    color: #ff6b5a;
+}
+
+.library-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.library-toolbar h5 {
+    margin: 0;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.library-toolbar p {
+    margin: 2px 0 0;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.btn-redeem {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ff6b5a;
+    color: #fff;
+    border: 1px solid #ff6b5a;
+    border-radius: 50px;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.btn-redeem:hover,
+.btn-redeem:focus {
+    background: #fff;
+    color: #ff6b5a;
+    border-color: #ff6b5a;
+}
+
+.book-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 4px 12px #1f293712;
+}
+
+.book-cover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #fb923c 0%, #ef4444 100%);
+    color: #fff;
+    font-size: 48px;
+    margin-bottom: 14px;
+}
+
+.book-title {
+    font-weight: 600;
+    font-size: 16px;
+    color: #1f2937;
+    margin-bottom: 4px;
+}
+
+.book-meta {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 2px;
+}
+
+.library-empty {
+    text-align: center;
+    border: 2px dashed #e5e7eb;
+    border-radius: 16px;
+    padding: 48px 20px;
+}
+
+.library-empty-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: #fff1ef;
+    color: #ff6b5a;
+    font-size: 30px;
+    margin-bottom: 16px;
+}
+
+.library-empty h5 {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.library-empty p {
+    color: #6b7280;
+    margin-bottom: 20px;
+}
+
+.redeem-modal .modal-content {
+    border: none;
+    border-radius: 16px;
+    padding: 12px;
+    box-shadow: 0 25px 50px #00000040;
+}
+
+.redeem-modal .modal-header {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.redeem-modal .modal-title {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.redeem-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #ff6b5a;
+    color: #fff;
+    font-size: 22px;
+    margin: 0 auto 12px;
+}
+
+.redeem-modal .form-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+}
+
+.redeem-modal .form-control {
+    border-radius: 10px;
+    padding: 12px 14px;
+    letter-spacing: 1px;
+}
+
+.redeem-modal .form-control:focus {
+    border-color: #ff6b5a;
+    box-shadow: 0 0 0 0.2rem #ff6b5a26;
+}
+
+.btn-redeem-now {
+    width: 100%;
+    background: #ff6b5a;
+    color: #fff;
+    border: 1px solid #ff6b5a;
+    border-radius: 10px;
+    padding: 12px;
+    font-weight: 600;
+}
+
+.btn-redeem-now:hover,
+.btn-redeem-now:focus {
+    background: #fff;
+    color: #ff6b5a;
+    border-color: #ff6b5a;
+}

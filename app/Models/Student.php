@@ -34,4 +34,8 @@ class Student extends Authenticatable
     public function grade(){
         return $this->belongsTo(Grade::class);
     }
+    
+    public function books(){
+        return $this->belongsToMany(Book::class, 'student_library', 'student_id', 'book_id')->withTimestamps();
+    }
 }

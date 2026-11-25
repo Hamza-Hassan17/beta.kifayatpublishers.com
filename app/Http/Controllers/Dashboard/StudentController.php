@@ -8,6 +8,7 @@ use App\Models\ClassChapter;
 use App\Models\UraanUrduClass;
 use App\Models\UrduClassChapter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
@@ -153,11 +154,7 @@ class StudentController extends Controller
     }
 
     public function library(){
-        $books = [[
-            "name" => "Urdu book",
-            "isbn" => "12345678",
-            "author" => "Muneeb Masood"
-        ]];
+        $books = Auth::guard('student')->user()->books()->with('author')->get();
         return view('dashboard.students.student-library', ['books' => $books]);
     }
 }
