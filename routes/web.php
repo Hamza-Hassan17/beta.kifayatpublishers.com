@@ -21,27 +21,20 @@ use Illuminate\Support\Facades\Route;
 
 // Auth::routes();
 Route::get('/', function (Request $request) {
-    if (Auth::guard('student')->check() || Auth::guard('teacher')->check()) {
-        return view('frontend.pages.choose-portal', ['selectedRole' => session('selected_role')]);
+    if (Auth::guard('student')->check()) {
+        return redirect()->route('student.portal');
+
     }
-
-    $role = strtolower((string) $request->query('role'));
-    if (in_array($role, ['student', 'teacher'], true)) {
-        session([
-            'welcome_seen' => true,
-            'selected_role' => $role,
-        ]);
-
-        return view('frontend.pages.choose-portal', ['selectedRole' => $role]);
+    if (Auth::guard('teacher')->check()) {
+        return redirect()->route('teacher.portal');
     }
 
     if (session('welcome_seen')) {
         return view('frontend.pages.choose-portal', ['selectedRole' => session('selected_role')]);
+    } else {
+        session(['welcome_seen' => true]);
+        return view('frontend.pages.welcome');
     }
-
-    session(['welcome_seen' => true]);
-
-    return view('frontend.pages.welcome');
 })->name('choose-portal');
 // Guest Routes hh
 

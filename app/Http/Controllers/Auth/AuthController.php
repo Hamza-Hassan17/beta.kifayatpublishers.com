@@ -175,6 +175,7 @@ class AuthController extends Controller
             $request->session()->invalidate();
             $request->session()->regenerateToken();
             Log::info('Logout Successfully!');
+            session(['welcome_seen' => true]);
             return Redirect::route('choose-portal')->with('success', 'Logout Successfully!');
         } catch (\Throwable $th) {
             Log::error($th->getMessage());

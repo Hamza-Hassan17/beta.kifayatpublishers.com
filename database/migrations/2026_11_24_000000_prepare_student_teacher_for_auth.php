@@ -12,10 +12,8 @@ return new class extends Migration
         Schema::table('student', function (Blueprint $table) {
             $table->string('profile_img')->nullable();
             $table->rememberToken();
+            $table->string('roll_number')->nullable()->change();
         });
-
-        // Raw SQL because ->change() needs doctrine/dbal on Laravel 10 (MySQL syntax)
-        DB::statement('ALTER TABLE student MODIFY roll_number VARCHAR(255) NULL');
 
         Schema::table('teacher', function (Blueprint $table) {
             $table->string('profile_img')->nullable();
