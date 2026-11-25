@@ -5,7 +5,18 @@
 @section('keywords', '')
 @section('author', '')
 
+@section('auth-page-class', 'register-page')
+
 @section('css')
+    <style>
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+        .register-page .login-card {
+            margin-top: 0 !important;
+            margin-bottom: 0;
+        }
+    </style>
 @endsection
 
 @php($isStudent = $isStudent ?? false)
@@ -51,8 +62,9 @@
                     @foreach ($schools as $school)
                         <option value="{{ $school->id }}">{{ $school->name }}</option>
                     @endforeach
+                </select>
             </div>
-            
+
             @if ($isStudent)
                 @php
                     $grades = \App\Models\Grade::all();
@@ -67,6 +79,14 @@
                 @endforeach
                 </select>
             </div> 
+            @endif
+
+            @if ($isStudent)
+                <div class="mb-3">
+                    <label class="form-label">Roll Number</label>
+                    <input type="text" class="form-control" placeholder="Enter your roll number" name="roll_number">
+                </div>
+            
             @endif
 
              <div class="mb-3">
