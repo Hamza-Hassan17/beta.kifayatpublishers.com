@@ -9,6 +9,8 @@
 
 @section('css')
     <style>
+        .register-page {
+            height: auto !important;
             min-height: 100vh;
             padding: 2rem 1rem;
         }
