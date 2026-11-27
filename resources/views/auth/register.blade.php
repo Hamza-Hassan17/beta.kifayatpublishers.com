@@ -44,15 +44,15 @@
             @csrf
             <div class="mb-3">
                 <label class="form-label">Name</label>
-                <input type="text" class="form-control" placeholder="Enter your name" name="name">
+                <input type="text" class="form-control" placeholder="Enter your name" name="name" value="{{ old('name') }}">
             </div>
             <div class="mb-3">
                 <label class="form-label">Email Address</label>
-                <input type="email" class="form-control" placeholder="Enter your email" name="email">
+                <input type="email" class="form-control" placeholder="Enter your email" name="email" value= {{ old('email') }}>
             </div>
             <div class="mb-3">
                 <label class="form-label">Phone Number</label>
-                <input type="text" class="form-control" placeholder="Enter your phone number" name="phone">
+                <input type="text" class="form-control" placeholder="Enter your phone number" name="phone" value= {{ old('phone') }}>
             </div>
            
             <div class="mb-3">
@@ -86,7 +86,7 @@
             @if ($isStudent)
                 <div class="mb-3">
                     <label class="form-label">Roll Number</label>
-                    <input type="text" class="form-control" placeholder="Enter your roll number" name="roll_number">
+                    <input type="text" class="form-control" placeholder="Enter your roll number" name="roll_number" value= {{ old('roll_number') }}>
                 </div>
             
             @endif
